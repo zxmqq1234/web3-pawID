@@ -1,0 +1,5 @@
+# Monskill 元数据说明
+# 说明：本文件标记本仓库以 Monskill 方式构建，便于活动评审识别构建来源。
+built-with=monskills
+chain=monad-testnet
+# 说明：目标链为 Monad 测试网，合约与前端均对应该网络。
