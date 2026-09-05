@@ -28,7 +28,7 @@ import type {
 } from '../../domain/types';
 import { fixedItemCatalog } from '../../store/actions';
 import { useDemoStore } from '../../store/DemoProvider';
-import { Button, DemoBadge, EmptyState, Modal, PetAvatar, StatusTag, useToast } from '../../shared/ui';
+import { Button, EmptyState, Modal, PetAvatar, StatusTag, useToast } from '../../shared/ui';
 import './assets.css';
 
 /** 成长资产页接收路由层提供的宠物 ID，不直接依赖路由。 */
@@ -73,7 +73,7 @@ const LOCAL_AVATAR_PATHS: Record<Pet['species'], string> = {
   dog: new URL('./avatars/dog.svg', import.meta.url).href,
 };
 
-/** 统一格式化演示时间，保留中文阅读语境并避免 UTC 日期错位。 */
+/** 统一格式化记录时间，保留中文阅读语境并避免 UTC 日期错位。 */
 function formatDate(value: string | null): string {
   if (!value) return '待完成';
   const date = new Date(value);
@@ -228,16 +228,15 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
   return <div className="assets-page">
     <header className="assets-hero">
       <div className="assets-hero-copy">
-        <DemoBadge />
         <p className="assets-kicker"><Sparkles size={15} aria-hidden="true" />成长资产 · 只读档案</p>
         <h1>属于 <span>{pet.name}</span> 的成长资产</h1>
         <p className="assets-lead">每一次被认真记录，都会成为 {pet.name} 生命里可收藏的光。</p>
-        <div className="assets-hero-meta"><StatusTag tone={canManage ? 'success' : 'neutral'}>{canManage ? '可管理资产' : '访客只读'}</StatusTag><span>所有积分与账户均为演示，不充值、不提现、不发生真实交易。</span></div>
+        <div className="assets-hero-meta"><StatusTag tone={canManage ? 'success' : 'neutral'}>{canManage ? '可管理资产' : '访客只读'}</StatusTag><span>积分与身份账户仅保存在本机，不充值、不提现、不转账，不发生真实交易。</span></div>
       </div>
       <div className="assets-hero-subject" aria-label={`${pet.name} 的成长资产主体`}>
         <div className="assets-orbit assets-orbit-one" />
         <div className="assets-orbit assets-orbit-two" />
-        <PetAvatar pet={assetPet} equippedAssetPath={equippedItem ? localItemPath(equippedItem.code) : undefined} size="large" />
+        <PetAvatar pet={assetPet} equippedAssetPath={equippedItem ? localItemPath(equippedItem.code) : undefined} size="large" showPresetLabel={false} />
         <span className="assets-subject-caption"><Crown size={14} aria-hidden="true" />{equippedItem ? `穿戴中 · ${equippedItem.name}` : '等待一件专属装扮'}</span>
       </div>
     </header>
@@ -245,7 +244,7 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
     <section className="assets-summary-grid" aria-label="资产摘要">
       <article className="assets-summary-card assets-summary-paws">
         <div className="assets-summary-icon"><Coins size={20} aria-hidden="true" /></div>
-        <div><p>PAWS 余额</p><strong>{balance}</strong><span>可用于兑换演示装扮</span></div>
+        <div><p>PAWS 余额</p><strong>{balance}</strong><span>可用于兑换本机装扮</span></div>
         <span className="summary-spark">实时派生</span>
       </article>
       <article className="assets-summary-card">
@@ -258,7 +257,7 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
       </article>
       <article className="assets-summary-card assets-account-card">
         <div className="assets-summary-icon assets-summary-icon-blue"><WalletCards size={20} aria-hidden="true" /></div>
-        <div><p>模拟账户</p><strong>{pet.identityAccount.network}</strong><span title={petAddress}>{petAddress}</span></div>
+        <div><p>身份账户标识</p><strong>本机记录</strong><span title={petAddress}>{petAddress}</span></div>
       </article>
     </section>
 
@@ -281,17 +280,17 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
       </div>}
       {tab === 'wardrobe' && <div className="assets-tab-panel" role="tabpanel" id="assets-panel-wardrobe" aria-labelledby="assets-tab-wardrobe">
         <div className="panel-intro"><div><p className="assets-kicker">A LITTLE EXTRA CHARM</p><h2>衣橱与装扮</h2></div><p>{canManage ? '点击拥有的装扮即可穿戴或卸下，一次只穿一件。' : '当前为只读模式，可查看拥有与穿戴状态。'}</p></div>
-        <div className="wardrobe-feature"><div className="wardrobe-feature-avatar"><PetAvatar pet={assetPet} equippedAssetPath={equippedItem ? localItemPath(equippedItem.code) : undefined} size="medium" /></div><div><span className="badge-label">CURRENT LOOK</span><h3>{equippedItem ? `${pet.name} 正在穿戴 ${equippedItem.name}` : `${pet.name} 还没有穿戴装扮`}</h3><p>{equippedItem ? '这件装扮已经叠加到数字形象上。' : '兑换一件喜欢的装扮，为今天留下新的样子。'}</p></div></div>
+        <div className="wardrobe-feature"><div className="wardrobe-feature-avatar"><PetAvatar pet={assetPet} equippedAssetPath={equippedItem ? localItemPath(equippedItem.code) : undefined} size="medium" showPresetLabel={false} /></div><div><span className="badge-label">CURRENT LOOK</span><h3>{equippedItem ? `${pet.name} 正在穿戴 ${equippedItem.name}` : `${pet.name} 还没有穿戴装扮`}</h3><p>{equippedItem ? '这件装扮已经叠加到数字形象上。' : '兑换一件喜欢的装扮，为今天留下新的样子。'}</p></div></div>
         <div className="catalog-grid">{catalog.map((item) => { const owned = ownedCodes.has(item.code); const ownedItem = inventory.find((candidate) => candidate.code === item.code); return <article className={`catalog-card ${owned ? 'catalog-card-owned' : ''}`} key={item.code}><div className="catalog-image"><img src={item.assetPath} alt={`${item.name} 装扮预览`} /><span>{owned ? '已拥有' : `${item.price} PAWS`}</span></div><div className="catalog-card-body"><div><h3>{item.name}</h3>{ownedItem?.equipped && <StatusTag tone="success">穿戴中</StatusTag>}</div>{ownedItem ? (canManage ? <Button variant={ownedItem.equipped ? 'secondary' : 'primary'} disabled={busyItemId === ownedItem.id} onClick={() => void toggleEquip(ownedItem)}>{busyItemId === ownedItem.id ? '保存中…' : ownedItem.equipped ? '卸下' : '穿戴'}</Button> : <span className="catalog-readonly">只读查看</span>) : (canManage ? <Button variant="secondary" onClick={() => openRedeemModal(item)}>查看并兑换</Button> : <span className="catalog-readonly">只读查看</span>)}</div></article>; })}</div>
         {operationError && <p className="assets-inline-error" role="alert"><CircleHelp size={16} aria-hidden="true" />{operationError}</p>}
       </div>}
       {tab === 'points' && <div className="assets-tab-panel" role="tabpanel" id="assets-panel-points" aria-labelledby="assets-tab-points">
         <div className="panel-intro"><div><p className="assets-kicker">EVERY STEP COUNTS</p><h2>积分明细</h2></div><p>积分余额由全部流水实时派生，按最新变更倒序排列。</p></div>
-        {pointEntries.length === 0 ? <EmptyState title="还没有积分明细" description="完成一项成长任务后，这里会留下第一笔记录。" /> : <div className="points-table-wrap"><table className="points-table"><thead><tr><th scope="col">时间</th><th scope="col">事项</th><th scope="col">增减</th><th scope="col">变更后余额</th></tr></thead><tbody>{pointEntries.map((entry) => <tr key={entry.id}><td><time dateTime={entry.createdAt}>{formatDate(entry.createdAt)}</time></td><td><span className="point-title">{entry.title}</span>{entry.kind === 'seed' && <small>演示种子数据</small>}</td><td className={entry.amount >= 0 ? 'point-positive' : 'point-negative'}>{entry.amount >= 0 ? <ArrowUpRight size={15} aria-hidden="true" /> : <ArrowDownLeft size={15} aria-hidden="true" />}{entry.amount > 0 ? '+' : ''}{entry.amount} PAWS</td><td><strong>{entry.balanceAfter} PAWS</strong></td></tr>)}</tbody></table></div>}
+        {pointEntries.length === 0 ? <EmptyState title="还没有积分明细" description="完成一项成长任务后，这里会留下第一笔记录。" /> : <div className="points-table-wrap"><table className="points-table"><thead><tr><th scope="col">时间</th><th scope="col">事项</th><th scope="col">增减</th><th scope="col">变更后余额</th></tr></thead><tbody>{pointEntries.map((entry) => <tr key={entry.id}><td><time dateTime={entry.createdAt}>{formatDate(entry.createdAt)}</time></td><td><span className="point-title">{entry.title}</span></td><td className={entry.amount >= 0 ? 'point-positive' : 'point-negative'}>{entry.amount >= 0 ? <ArrowUpRight size={15} aria-hidden="true" /> : <ArrowDownLeft size={15} aria-hidden="true" />}{entry.amount > 0 ? '+' : ''}{entry.amount} PAWS</td><td><strong>{entry.balanceAfter} PAWS</strong></td></tr>)}</tbody></table></div>}
       </div>}
     </section>
 
-    <section className="assets-notice"><LockKeyhole size={18} aria-hidden="true" /><div><strong>关于演示资产</strong><p>PAWS、模拟账户和装扮兑换仅用于产品体验，不支持充值、提现、转账或任何真实交易。{!canManage && '你当前没有编辑权限，页面处于只读状态。'}</p></div></section>
+    <section className="assets-notice"><LockKeyhole size={18} aria-hidden="true" /><div><strong>关于成长积分</strong><p>PAWS 积分、身份账户标识和装扮兑换均为本机记录，不代表链上代币或钱包资产，不支持充值、提现、转账或任何真实交易。{!canManage && '你当前没有编辑权限，页面处于只读状态。'}</p></div></section>
 
     <Modal open={Boolean(redeemTarget)} onClose={() => { if (!busyCode) setRedeemTarget(null); }} title="确认兑换装扮" className="redeem-modal">
       {redeemTarget && <div className="redeem-content"><div className="redeem-preview"><img src={localItemPath(redeemTarget.code)} alt={`${redeemTarget.name} 预览`} /><span><Gift size={14} aria-hidden="true" />装扮预览</span></div><div className="redeem-copy"><span className="badge-label">A NEW LOOK FOR {pet.name.toUpperCase()}</span><h3>{redeemTarget.name}</h3><p>兑换后会加入 {pet.name} 的衣橱，你可以随时穿戴或卸下。</p><div className="redeem-numbers"><div><span>价格</span><strong>{redeemTarget.price} <small>PAWS</small></strong></div><div><span>当前余额</span><strong>{balance} <small>PAWS</small></strong></div><div className={modalShortfall > 0 ? 'redeem-after redeem-after-negative' : 'redeem-after'}><span>兑换后</span><strong>{modalBalanceAfter} <small>PAWS</small></strong></div></div>{modalShortfall > 0 && <div className="redeem-shortfall" role="alert"><CircleHelp size={17} aria-hidden="true" /><div><strong>还差 {modalShortfall} PAWS</strong><p>先完成成长任务，再回来兑换。{remainingTasks.length > 0 && <>{' '}<a href={remainingTasks[0].href}>去完成任务 <ChevronRight size={14} aria-hidden="true" /></a></>}</p></div></div>}{operationError && <p className="assets-inline-error" role="alert"><X size={16} aria-hidden="true" />{operationError}</p>}<div className="button-row redeem-actions"><Button variant="secondary" disabled={Boolean(busyCode)} onClick={() => setRedeemTarget(null)}>取消</Button><Button disabled={!canManage || modalShortfall > 0 || Boolean(busyCode)} onClick={() => void confirmRedeem()}>{busyCode ? '兑换中…' : modalShortfall > 0 ? '余额不足' : '确认兑换'}</Button></div>{!canManage && <p className="readonly-hint">当前为访客只读模式，不能兑换或穿戴装扮。</p>}</div></div>}

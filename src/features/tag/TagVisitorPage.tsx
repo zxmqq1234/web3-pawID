@@ -111,14 +111,14 @@ export function TagVisitorPage({ petId }: TagVisitorPageProps): JSX.Element {
   };
 
   if (!profile) {
-    return <main className="tag-visitor-page tag-missing-page"><div className="tag-missing-shell"><EmptyState title="这个 PawTag 暂时无法打开" description="此内容仅在创建它的演示浏览器可用。请回到体验示例，或让创建者在同源同浏览器中打开这张 PawTag。" action={<a className="tag-example-link" href="#/tag/mochi"><Sparkles size={15} aria-hidden="true" />体验示例</a>} /><p className="tag-sync-note">同源同浏览器演示可同步，不同设备不会实时共享。</p></div></main>;
+    return <main className="tag-visitor-page tag-missing-page"><div className="tag-missing-shell"><EmptyState title="这个 PawTag 暂时无法打开" description="这条 PawTag 记录仅保存在创建它的浏览器中。请让宠物主人在同一浏览器中打开，或回到首页了解 PawID。" action={<a className="tag-archive-link" href="#/tag/mochi"><Sparkles size={15} aria-hidden="true" />查看体验档案</a>} /><p className="tag-sync-note">记录保存在创建它的浏览器中，不同设备不会实时共享。</p></div></main>;
   }
 
   return <main className="tag-visitor-page">
     <div className="tag-visitor-shell">
       <header className="tag-visitor-header">
         <div className="tag-brand-mark" aria-hidden="true">P</div>
-        <div><span className="tag-brand-name">PawTag</span><span className="tag-demo-label">演示访客页</span></div>
+        <div><span className="tag-brand-name">PawTag</span><span className="tag-mode-label">访客页</span></div>
       </header>
 
       <section className="tag-profile-card" aria-label={`${profile.name} 的公开资料`}>
@@ -146,7 +146,7 @@ export function TagVisitorPage({ petId }: TagVisitorPageProps): JSX.Element {
 
       <section className="tag-found-section" aria-label="提交发现线索">
         {!reportOpen && <Button className="tag-found-button" onClick={() => { setReportOpen(true); setSubmitted(false); }}><MapPin size={18} aria-hidden="true" />我发现了它</Button>}
-        {submitted && <p className="tag-submitted-message" role="status"><CheckCircle2 size={17} aria-hidden="true" />线索已记录（演示）</p>}
+        {submitted && <p className="tag-submitted-message" role="status"><CheckCircle2 size={17} aria-hidden="true" />线索已记录在本机</p>}
         {reportOpen && <form className="tag-report-form" onSubmit={(event) => void submitReport(event)}>
           <div className="tag-section-heading"><MapPin size={19} aria-hidden="true" /><div><h2>告诉监护人你发现了它</h2><p>请手动填写，不会请求定位权限。</p></div></div>
           <InputField label="发现地点" placeholder="例如：人民公园北门" value={reportForm.location} error={locationError} disabled={submitting} onChange={(event) => setReportForm((current) => ({ ...current, location: event.target.value }))} required />
@@ -156,7 +156,7 @@ export function TagVisitorPage({ petId }: TagVisitorPageProps): JSX.Element {
         </form>}
       </section>
 
-      <footer className="tag-visitor-footer"><Info size={15} aria-hidden="true" /><span>同源同浏览器演示可同步，不同设备不会实时共享。PawID 演示不会发送真实通知。<br /><a href="#/">回到首页</a> · <a href="#/tag/mochi">体验示例</a></span></footer>
+      <footer className="tag-visitor-footer"><Info size={15} aria-hidden="true" /><span>线索仅保存在创建这张 PawTag 的浏览器中：不同设备不会实时共享，也不会发送短信或其他真实通知。<br /><a href="#/">回到首页</a> · <a href="#/tag/mochi">查看体验档案</a></span></footer>
     </div>
   </main>;
 }

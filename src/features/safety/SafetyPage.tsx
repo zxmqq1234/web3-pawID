@@ -21,7 +21,7 @@ interface FormErrors {
   lostAt?: string;
 }
 
-/** 生成当前演示浏览器可打开的 PawTag 地址，不依赖路由组件。 */
+/** 生成当前浏览器可打开的 PawTag 地址，不依赖路由组件。 */
 function makeTagUrl(petId: string): string {
   if (typeof window === 'undefined') return `#/tag/${encodeURIComponent(petId)}`;
   return `${window.location.origin}${window.location.pathname}#/tag/${encodeURIComponent(petId)}`;
@@ -137,7 +137,7 @@ export function SafetyPage({ petId }: SafetyPageProps): JSX.Element {
   };
 
   if (!pet) {
-    return <main className="safety-page safety-page-empty"><EmptyState title="找不到这只宠物" description={`没有找到宠物 ID「${petId}」。请从当前演示浏览器打开有效的 PawID。`} action={<a className="safety-inline-link" href="#/tag/mochi">前往体验示例</a>} /></main>;
+    return <main className="safety-page safety-page-empty"><EmptyState title="找不到这只宠物" description={`没有找到宠物 ID「${petId}」。这条 PawID 记录仅保存在创建它的浏览器中。`} action={<a className="safety-inline-link" href="#/tag/mochi">打开体验档案</a>} /></main>;
   }
 
   return <main className="safety-page">
@@ -145,7 +145,7 @@ export function SafetyPage({ petId }: SafetyPageProps): JSX.Element {
       <div>
         <span className="safety-eyebrow">SAFETY / PAWTAG</span>
         <h1>{pet.name} 的防丢守护</h1>
-        <p>把一张可验证的 PawTag 留在身边，让发现者能快速留下线索。</p>
+        <p>把 PawTag 二维码留在项圈上，发现它的人可以快速留下线索。</p>
       </div>
       <StatusTag tone={statusMeta.tone}>{statusMeta.label}</StatusTag>
     </header>
@@ -157,10 +157,11 @@ export function SafetyPage({ petId }: SafetyPageProps): JSX.Element {
           <span className="tag-chip">#{pet.id}</span>
         </div>
         <div className="tag-card-content">
-          <QrCode value={tagUrl} label="扫描查看 PawTag（演示）" />
+          <QrCode value={tagUrl} label="扫描查看 PawTag（本机记录）" />
           <div className="tag-share-copy">
             <p className="tag-share-title">让捡到它的人快速联系</p>
             <p className="muted-text">二维码只打开公开访客页，不会暴露主人的联系方式、住址或家庭资料。</p>
+            <p className="muted-text">PawTag 页面和线索仅保存在本机浏览器：暂不支持跨设备实时同步、短信推送、实时定位或机构联动。</p>
             <CopyBox value={tagUrl} label="PawTag 访客链接" />
             <a className="safety-preview-link" href={tagUrl}><ExternalLink size={15} aria-hidden="true" />预览访客页</a>
           </div>
@@ -172,7 +173,7 @@ export function SafetyPage({ petId }: SafetyPageProps): JSX.Element {
         <div className="status-card-copy">
           <span className="card-kicker">CURRENT SAFETY</span>
           <h2>{statusMeta.label}</h2>
-          <p>{activeCase ? (activeCase.status === 'reported' ? '访客已经留下新线索，请尽快查看线索列表。' : '这只宠物正在寻找中，请通过 PawTag 收集线索。') : '当前没有进行中的寻宠事件，状态会持续同步到 PawTag。'}</p>
+          <p>{activeCase ? (activeCase.status === 'reported' ? '访客已经留下新线索，请尽快查看线索列表。' : '这只宠物正在寻找中，请通过 PawTag 收集线索。') : '当前没有进行中的寻宠事件，状态会同步到本机 PawTag 页面。'}</p>
         </div>
         {isOwner && !activeCase && <Button className="lost-button" variant="danger" onClick={() => setLostModalOpen(true)}><Siren size={16} aria-hidden="true" />标记走失</Button>}
         {!isOwner && <p className="read-only-note">共同监护人和访客可查看，只有主监护人能操作寻宠状态。</p>}
@@ -181,7 +182,7 @@ export function SafetyPage({ petId }: SafetyPageProps): JSX.Element {
           <Button variant="secondary" disabled={closingCase} onClick={() => setConfirmAction('closed')}>结束本次寻宠</Button>
         </div>}
         {caseEventId && <p className="event-notice" role="status"><CheckCircle2 size={15} aria-hidden="true" />寻宠事件已创建：<code>{caseEventId}</code></p>}
-        {reunitedNotice && <p className="reward-notice" role="status"><Sparkles size={15} aria-hidden="true" />Home Again 已获得，徽章由演示状态统一记录。</p>}
+        {reunitedNotice && <p className="reward-notice" role="status"><Sparkles size={15} aria-hidden="true" />Home Again 已获得，徽章由本机记录统一保存。</p>}
       </article>
     </section>
 
@@ -198,7 +199,7 @@ export function SafetyPage({ petId }: SafetyPageProps): JSX.Element {
 
       <article className="safety-card reports-card">
         <div className="card-heading"><div><span className="card-kicker">FOUND REPORTS</span><h2>访客线索</h2></div><span className="report-count">{reports.length} 条</span></div>
-        <p className="muted-text">访客手动填写的线索会同步到这里；线索不等于寻回。</p>
+        <p className="muted-text">访客在本机 PawTag 页面手动填写的线索会记录在这里；线索不等于寻回。</p>
         {reports.length > 0 ? <ul className="report-list">{reports.map((report) => <li key={report.id}>
           <div className="report-meta"><span><MapPin size={14} aria-hidden="true" />{report.location}</span><time dateTime={report.createdAt}>{formatDateTime(report.createdAt)}</time></div>
           {report.message && <p>{report.message}</p>}

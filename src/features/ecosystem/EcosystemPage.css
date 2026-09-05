@@ -93,7 +93,6 @@
 .principles-list p { margin: 0; color: var(--eco-muted); font-size: 12px; line-height: 1.75; }
 .principles-list strong { display: block; margin-bottom: 2px; color: var(--eco-ink); font-size: 14px; }
 .ecosystem-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; max-width: 1200px; margin: 0 auto; padding: 20px 40px 32px; color: #969b97; font-size: 11px; }
-.ecosystem-footer .demo-badge { color: #67706b; background: #e7ebe7; }
 
 .service-modal .modal-header { background: #fbfbf7; }
 .service-modal .modal-body { padding: 0; }
@@ -163,7 +162,6 @@
   .principles-list { margin-top: 30px; }
   .ecosystem-footer { display: block; padding: 16px 20px 25px; line-height: 2; }
   .ecosystem-footer > span { display: block; }
-  .ecosystem-footer .demo-badge { display: inline-flex; margin: 4px 0; }
   .service-detail { padding: 20px 16px 25px; }
   .service-detail-grid { grid-template-columns: 1fr; }
   .service-detail-model { display: block; }
