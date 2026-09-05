@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 装扮 生日帽：透明背景星星生日帽图层，可叠加头像顶部，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Birthday hat outfit layer">
+  <title>装扮 生日帽</title>
+  <!-- 系带 -->
+  <path d="M196 340 Q256 420 316 340" fill="none" stroke="#8A6D1B" stroke-width="7" stroke-linecap="round" stroke-dasharray="14 10"/>
+  <!-- 帽身 -->
+  <path d="M256 40 L360 340 L152 340 Z" fill="#7765F5" stroke="#4A3FA3" stroke-width="8" stroke-linejoin="round"/>
+  <!-- 斜纹 -->
+  <path d="M228 118 L312 118 L296 168 L212 168 Z" fill="#FFD66B"/>
+  <path d="M204 208 L336 208 L320 258 L188 258 Z" fill="#7DF0C0"/>
+  <path d="M180 292 L332 292 L324 318 L168 318 Z" fill="#FF9EB0"/>
+  <!-- 帽檐 -->
+  <ellipse cx="256" cy="342" rx="116" ry="30" fill="#5A4FC4" stroke="#4A3FA3" stroke-width="6"/>
+  <ellipse cx="256" cy="334" rx="116" ry="26" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="12 10" opacity="0.8"/>
+  <!-- 顶部绒球 -->
+  <circle cx="256" cy="40" r="30" fill="#FFD66B" stroke="#D9A83C" stroke-width="6"/>
+  <circle cx="246" cy="30" r="9" fill="#FFFFFF" opacity="0.8"/>
+  <!-- 星星装饰 -->
+  <g fill="#FFFFFF" stroke="#4A3FA3" stroke-width="3" stroke-linejoin="round">
+    <path d="M256 170 l10 22 24 3 -17 17 4 24 -21 -11 -21 11 4 -24 -17 -17 24 -3 Z"/>
+    <path d="M222 262 l7 15 17 2 -12 12 3 17 -15 -8 -15 8 3 -17 -12 -12 17 -2 Z"/>
+    <path d="M292 262 l7 15 17 2 -12 12 3 17 -15 -8 -15 8 3 -17 -12 -12 17 -2 Z"/>
+  </g>
+  <!-- 彩纸 -->
+  <g>
+    <circle cx="140" cy="120" r="9" fill="#F2729B"/>
+    <circle cx="376" cy="120" r="9" fill="#7DF0C0"/>
+    <circle cx="120" cy="230" r="8" fill="#FFD66B"/>
+    <circle cx="392" cy="230" r="8" fill="#FF9EB0"/>
+    <rect x="150" y="300" width="16" height="16" rx="4" fill="#7DF0C0" transform="rotate(20 158 308)"/>
+    <rect x="346" y="300" width="16" height="16" rx="4" fill="#FFD66B" transform="rotate(-20 354 308)"/>
+  </g>
+</svg>

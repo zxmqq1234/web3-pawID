@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数字形象 3D萌宠风 狗：立体金毛头，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="3D cute dog avatar">
+  <title>数字形象 3D萌宠 狗</title>
+  <rect width="512" height="512" rx="112" fill="#EFEBFF"/>
+  <ellipse cx="256" cy="430" rx="150" ry="34" fill="#7765F5" opacity="0.18"/>
+  <!-- 立体垂耳 -->
+  <path d="M132 220 Q100 320 148 356 Q184 344 180 250 Z" fill="#C98F2E"/>
+  <path d="M132 220 Q100 320 148 356 Q160 350 166 320 Q150 280 156 230 Z" fill="#FFFFFF" opacity="0.28"/>
+  <path d="M380 220 Q412 320 364 356 Q328 344 332 250 Z" fill="#C98F2E"/>
+  <path d="M380 220 Q412 320 364 356 Q352 350 346 320 Q362 280 356 230 Z" fill="#000000" opacity="0.1"/>
+  <!-- 头立体 -->
+  <ellipse cx="256" cy="272" rx="136" ry="130" fill="#EDBE5D"/>
+  <ellipse cx="204" cy="220" rx="68" ry="50" fill="#FFFFFF" opacity="0.4"/>
+  <ellipse cx="256" cy="344" rx="74" ry="58" fill="#F7DC9E"/>
+  <!-- 大眼 -->
+  <ellipse cx="198" cy="272" rx="36" ry="42" fill="#FFFFFF"/>
+  <ellipse cx="314" cy="272" rx="36" ry="42" fill="#FFFFFF"/>
+  <ellipse cx="198" cy="278" rx="20" ry="25" fill="#3A2A1A"/>
+  <ellipse cx="314" cy="278" rx="20" ry="25" fill="#3A2A1A"/>
+  <circle cx="190" cy="268" r="9" fill="#FFFFFF"/>
+  <circle cx="306" cy="268" r="9" fill="#FFFFFF"/>
+  <!-- 鼻子立体 -->
+  <ellipse cx="256" cy="326" rx="26" ry="18" fill="#3A2A1A"/>
+  <ellipse cx="248" cy="320" rx="8" ry="5" fill="#FFFFFF" opacity="0.7"/>
+  <path d="M256 344 Q256 358 240 362 M256 344 Q256 358 272 362" fill="none" stroke="#6B4A2A" stroke-width="5" stroke-linecap="round"/>
+  <path d="M240 366 Q256 386 272 366 Q264 378 256 378 Q248 378 240 366 Z" fill="#E86A7A"/>
+  <!-- 腮红 -->
+  <ellipse cx="152" cy="322" rx="20" ry="12" fill="#FF9EB0" opacity="0.55"/>
+  <ellipse cx="360" cy="322" rx="20" ry="12" fill="#FF9EB0" opacity="0.55"/>
+  <!-- 3D徽标 -->
+  <rect x="196" y="52" width="120" height="40" rx="20" fill="#7765F5"/>
+  <circle cx="216" cy="72" r="8" fill="#7DF0C0"/>
+  <circle cx="236" cy="72" r="8" fill="#FFD66B"/>
+  <circle cx="256" cy="72" r="8" fill="#FF9EB0"/>
+  <circle cx="288" cy="72" r="6" fill="#FFFFFF" opacity="0.9"/>
+</svg>

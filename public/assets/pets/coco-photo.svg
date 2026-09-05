@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Coco 肖像：可可色贵宾犬，卷毛，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Coco poodle portrait">
+  <title>Coco 可可贵宾肖像</title>
+  <rect width="512" height="512" rx="96" fill="#FDF0F3"/>
+  <circle cx="256" cy="256" r="196" fill="#F6DDE4"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <!-- 身体卷毛 -->
+  <ellipse cx="256" cy="436" rx="124" ry="64" fill="#8A5A3B"/>
+  <circle cx="180" cy="420" r="26" fill="#9C6A45"/>
+  <circle cx="332" cy="420" r="26" fill="#9C6A45"/>
+  <circle cx="216" cy="442" r="24" fill="#7A4C30"/>
+  <circle cx="296" cy="442" r="24" fill="#7A4C30"/>
+  <ellipse cx="256" cy="440" rx="52" ry="42" fill="#C79B76"/>
+  <!-- 头部卷毛外圈 -->
+  <circle cx="150" cy="220" r="30" fill="#8A5A3B"/>
+  <circle cx="362" cy="220" r="30" fill="#8A5A3B"/>
+  <circle cx="170" cy="150" r="32" fill="#9C6A45"/>
+  <circle cx="342" cy="150" r="32" fill="#9C6A45"/>
+  <circle cx="216" cy="112" r="34" fill="#8A5A3B"/>
+  <circle cx="296" cy="112" r="34" fill="#8A5A3B"/>
+  <circle cx="256" cy="104" r="30" fill="#9C6A45"/>
+  <!-- 脸 -->
+  <ellipse cx="256" cy="248" rx="112" ry="110" fill="#A9714B"/>
+  <ellipse cx="256" cy="320" rx="60" ry="48" fill="#E4C39C"/>
+  <!-- 眼睛 -->
+  <ellipse cx="208" cy="246" rx="24" ry="26" fill="#2A1D12"/>
+  <ellipse cx="304" cy="246" rx="24" ry="26" fill="#2A1D12"/>
+  <circle cx="216" cy="238" r="7" fill="#FFFFFF"/>
+  <circle cx="312" cy="238" r="7" fill="#FFFFFF"/>
+  <!-- 腮红 -->
+  <ellipse cx="176" cy="296" rx="16" ry="10" fill="#E88AA0" opacity="0.7"/>
+  <ellipse cx="336" cy="296" rx="16" ry="10" fill="#E88AA0" opacity="0.7"/>
+  <!-- 鼻子嘴 -->
+  <ellipse cx="256" cy="304" rx="20" ry="15" fill="#2A1D12"/>
+  <circle cx="250" cy="300" r="4" fill="#8A8A8A"/>
+  <path d="M256 319 Q256 334 240 338 M256 319 Q256 334 272 338" fill="none" stroke="#4A2E1A" stroke-width="4" stroke-linecap="round"/>
+  <!-- 头顶小卷 -->
+  <circle cx="256" cy="128" r="20" fill="#7A4C30"/>
+  <!-- 项圈 -->
+  <path d="M168 360 Q256 404 344 360 L336 384 Q256 424 176 384 Z" fill="#7765F5"/>
+  <circle cx="256" cy="406" r="14" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
+</svg>

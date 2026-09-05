@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Leo 肖像：金毛寻回犬，正面半身像，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Leo golden retriever portrait">
+  <title>Leo 金毛犬肖像</title>
+  <rect width="512" height="512" rx="96" fill="#EFF3FF"/>
+  <circle cx="256" cy="256" r="196" fill="#DCE6FF"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <!-- 身体 -->
+  <ellipse cx="256" cy="436" rx="128" ry="66" fill="#E8B04B"/>
+  <ellipse cx="256" cy="436" rx="60" ry="50" fill="#F7DC9E"/>
+  <ellipse cx="182" cy="454" rx="34" ry="22" fill="#F7DC9E" stroke="#C98F2E" stroke-width="4"/>
+  <ellipse cx="330" cy="454" rx="34" ry="22" fill="#F7DC9E" stroke="#C98F2E" stroke-width="4"/>
+  <!-- 垂耳 -->
+  <path d="M138 210 Q110 300 150 340 Q180 330 178 250 Z" fill="#C98F2E" stroke="#A5731F" stroke-width="4"/>
+  <path d="M374 210 Q402 300 362 340 Q332 330 334 250 Z" fill="#C98F2E" stroke="#A5731F" stroke-width="4"/>
+  <!-- 头 -->
+  <ellipse cx="256" cy="258" rx="122" ry="118" fill="#EDBE5D"/>
+  <ellipse cx="256" cy="200" rx="86" ry="52" fill="#F5D489"/>
+  <!-- 眼睛 -->
+  <ellipse cx="202" cy="258" rx="24" ry="26" fill="#3A2A1A"/>
+  <ellipse cx="310" cy="258" rx="24" ry="26" fill="#3A2A1A"/>
+  <circle cx="210" cy="250" r="7" fill="#FFFFFF"/>
+  <circle cx="318" cy="250" r="7" fill="#FFFFFF"/>
+  <!-- 眉毛亮点 -->
+  <ellipse cx="202" cy="226" rx="22" ry="10" fill="#F5D489" opacity="0.9"/>
+  <ellipse cx="310" cy="226" rx="22" ry="10" fill="#F5D489" opacity="0.9"/>
+  <!-- 嘴套 -->
+  <ellipse cx="256" cy="330" rx="66" ry="52" fill="#F7DC9E"/>
+  <ellipse cx="256" cy="314" rx="26" ry="20" fill="#3A2A1A"/>
+  <circle cx="256" cy="308" r="5" fill="#6B6B6B"/>
+  <path d="M256 334 Q256 350 238 354 M256 334 Q256 350 274 354" fill="none" stroke="#6B4A2A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M232 344 Q256 360 280 344" fill="none" stroke="#6B4A2A" stroke-width="4" stroke-linecap="round"/>
+  <!-- 舌头 -->
+  <path d="M244 356 Q256 384 268 356 Q260 350 256 352 Q252 350 244 356 Z" fill="#E86A7A"/>
+  <!-- 项圈 -->
+  <path d="M160 360 Q256 406 352 360 L344 384 Q256 428 168 384 Z" fill="#7765F5"/>
+  <circle cx="256" cy="408" r="14" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
+</svg>

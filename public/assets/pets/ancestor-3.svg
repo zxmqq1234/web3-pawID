@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 祖辈3：深棕猎犬爷爷，吻部花白，戴旧围巾，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ancestor senior brown hound">
+  <title>祖辈 深棕猎犬爷爷</title>
+  <rect width="512" height="512" rx="96" fill="#F2EFE6"/>
+  <circle cx="256" cy="256" r="196" fill="#DCD2BE"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <ellipse cx="256" cy="436" rx="126" ry="64" fill="#6B4A2A"/>
+  <ellipse cx="256" cy="436" rx="58" ry="48" fill="#C9B895"/>
+  <path d="M136 208 Q104 300 148 342 Q180 332 178 248 Z" fill="#4A2E1A" stroke="#2E1C0E" stroke-width="4"/>
+  <path d="M376 208 Q408 300 364 342 Q332 332 334 248 Z" fill="#4A2E1A" stroke="#2E1C0E" stroke-width="4"/>
+  <ellipse cx="256" cy="256" rx="120" ry="116" fill="#7A5230"/>
+  <ellipse cx="256" cy="200" rx="82" ry="50" fill="#8F6A42"/>
+  <!-- 白眉毛 -->
+  <path d="M176 220 Q200 208 224 218" fill="none" stroke="#EFE6D2" stroke-width="9" stroke-linecap="round"/>
+  <path d="M288 218 Q312 208 336 220" fill="none" stroke="#EFE6D2" stroke-width="9" stroke-linecap="round"/>
+  <ellipse cx="202" cy="256" rx="22" ry="24" fill="#2A1D12"/>
+  <ellipse cx="310" cy="256" rx="22" ry="24" fill="#2A1D12"/>
+  <circle cx="209" cy="248" r="6" fill="#FFFFFF"/>
+  <circle cx="317" cy="248" r="6" fill="#FFFFFF"/>
+  <!-- 花白嘴套 -->
+  <ellipse cx="256" cy="328" rx="64" ry="50" fill="#D9CBB0"/>
+  <ellipse cx="256" cy="312" rx="24" ry="18" fill="#2A1D12"/>
+  <circle cx="250" cy="307" r="4" fill="#8A8A8A"/>
+  <path d="M256 330 Q256 346 240 350 M256 330 Q256 346 272 350" fill="none" stroke="#4A2E1A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M234 342 Q256 356 278 342" fill="none" stroke="#4A2E1A" stroke-width="4" stroke-linecap="round"/>
+  <!-- 旧围巾 -->
+  <path d="M156 362 Q256 408 356 362 L348 392 Q256 434 164 392 Z" fill="#3FA46A"/>
+  <path d="M232 402 L280 402 L272 452 L240 452 Z" fill="#358A59"/>
+  <line x1="240" y1="418" x2="272" y2="418" stroke="#F2EFE6" stroke-width="4"/>
+  <line x1="241" y1="434" x2="271" y2="434" stroke="#F2EFE6" stroke-width="4"/>
+</svg>

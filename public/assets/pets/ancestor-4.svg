@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 祖辈4：奶油色老贵宾奶奶，头巾卷毛，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ancestor cream senior poodle">
+  <title>祖辈 奶油贵宾奶奶</title>
+  <rect width="512" height="512" rx="96" fill="#FFF7EC"/>
+  <circle cx="256" cy="256" r="196" fill="#EFE0C8"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <ellipse cx="256" cy="436" rx="122" ry="62" fill="#C9A87A"/>
+  <circle cx="184" cy="420" r="24" fill="#D9BC8E"/>
+  <circle cx="328" cy="420" r="24" fill="#D9BC8E"/>
+  <ellipse cx="256" cy="440" rx="50" ry="40" fill="#F3E3C8"/>
+  <!-- 头巾 -->
+  <path d="M140 200 Q150 96 256 92 Q362 96 372 200 Q330 170 256 168 Q182 170 140 200 Z" fill="#E86A7A" stroke="#B94E5E" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="256" cy="120" r="18" fill="#C74E5E"/>
+  <circle cx="148" cy="216" r="28" fill="#D9BC8E"/>
+  <circle cx="364" cy="216" r="28" fill="#D9BC8E"/>
+  <circle cx="172" cy="152" r="28" fill="#E4CDA4"/>
+  <circle cx="340" cy="152" r="28" fill="#E4CDA4"/>
+  <ellipse cx="256" cy="250" rx="108" ry="106" fill="#DEC096"/>
+  <ellipse cx="256" cy="318" rx="58" ry="46" fill="#F7ECD6"/>
+  <ellipse cx="210" cy="246" rx="22" ry="24" fill="#3A2A1A"/>
+  <ellipse cx="302" cy="246" rx="22" ry="24" fill="#3A2A1A"/>
+  <circle cx="217" cy="238" r="6" fill="#FFFFFF"/>
+  <circle cx="309" cy="238" r="6" fill="#FFFFFF"/>
+  <ellipse cx="180" cy="292" rx="14" ry="9" fill="#E88AA0" opacity="0.7"/>
+  <ellipse cx="332" cy="292" rx="14" ry="9" fill="#E88AA0" opacity="0.7"/>
+  <ellipse cx="256" cy="302" rx="18" ry="13" fill="#3A2A1A"/>
+  <path d="M256 315 Q256 329 242 333 M256 315 Q256 329 270 333" fill="none" stroke="#6B4A2A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M170 358 Q256 402 342 358 L334 382 Q256 420 178 382 Z" fill="#7765F5"/>
+  <circle cx="256" cy="402" r="13" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
+</svg>

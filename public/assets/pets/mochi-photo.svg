@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mochi 肖像：橘白相间猫，正面半身像，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Mochi orange-white cat portrait">
+  <title>Mochi 橘白猫肖像</title>
+  <rect width="512" height="512" rx="96" fill="#FFF4E6"/>
+  <circle cx="256" cy="256" r="196" fill="#FFE7C7"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.7"/>
+  <!-- 身体 -->
+  <ellipse cx="256" cy="430" rx="120" ry="70" fill="#F5A54B"/>
+  <ellipse cx="256" cy="430" rx="62" ry="52" fill="#FFFFFF"/>
+  <!-- 爪子 -->
+  <ellipse cx="188" cy="452" rx="34" ry="24" fill="#FFFFFF" stroke="#E8933C" stroke-width="4"/>
+  <ellipse cx="324" cy="452" rx="34" ry="24" fill="#FFFFFF" stroke="#E8933C" stroke-width="4"/>
+  <!-- 耳朵 -->
+  <path d="M148 190 L128 84 L224 138 Z" fill="#F5A54B" stroke="#D97F26" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M364 190 L384 84 L288 138 Z" fill="#F5A54B" stroke="#D97F26" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M155 168 L143 108 L199 141 Z" fill="#FFB8C1"/>
+  <path d="M357 168 L369 108 L313 141 Z" fill="#FFB8C1"/>
+  <!-- 头 -->
+  <ellipse cx="256" cy="262" rx="128" ry="118" fill="#F8B25C"/>
+  <!-- 头顶橘斑 -->
+  <path d="M168 176 Q200 150 236 162 Q228 196 196 202 Q172 200 168 176 Z" fill="#E8933C"/>
+  <path d="M344 176 Q312 150 276 162 Q284 196 316 202 Q340 200 344 176 Z" fill="#E8933C"/>
+  <!-- 脸颊白毛 -->
+  <ellipse cx="256" cy="330" rx="86" ry="62" fill="#FFFFFF"/>
+  <!-- 眼睛 -->
+  <ellipse cx="196" cy="262" rx="30" ry="34" fill="#FFFFFF"/>
+  <ellipse cx="316" cy="262" rx="30" ry="34" fill="#FFFFFF"/>
+  <ellipse cx="196" cy="266" rx="16" ry="20" fill="#3FA46A"/>
+  <ellipse cx="316" cy="266" rx="16" ry="20" fill="#3FA46A"/>
+  <ellipse cx="196" cy="266" rx="7" ry="12" fill="#1E2A24"/>
+  <ellipse cx="316" cy="266" rx="7" ry="12" fill="#1E2A24"/>
+  <circle cx="190" cy="258" r="5" fill="#FFFFFF"/>
+  <circle cx="310" cy="258" r="5" fill="#FFFFFF"/>
+  <!-- 鼻子嘴 -->
+  <path d="M240 312 L272 312 L256 328 Z" fill="#E86A7A" stroke="#C74E5E" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M256 328 Q256 342 240 346 M256 328 Q256 342 272 346" fill="none" stroke="#8A5A3B" stroke-width="4" stroke-linecap="round"/>
+  <!-- 胡须 -->
+  <g stroke="#B98A5E" stroke-width="3" stroke-linecap="round" opacity="0.9">
+    <line x1="120" y1="300" x2="180" y2="312"/>
+    <line x1="122" y1="326" x2="180" y2="322"/>
+    <line x1="392" y1="300" x2="332" y2="312"/>
+    <line x1="390" y1="326" x2="332" y2="322"/>
+  </g>
+  <!-- 项圈 -->
+  <path d="M162 356 Q256 404 350 356 L342 380 Q256 424 170 380 Z" fill="#7765F5"/>
+  <circle cx="256" cy="404" r="14" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
+</svg>

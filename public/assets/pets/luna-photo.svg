@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Luna 肖像：月光灰猫，额头月牙纹，蓝色眼睛，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Luna grey cat portrait">
+  <title>Luna 月光灰猫肖像</title>
+  <rect width="512" height="512" rx="96" fill="#F0F0FA"/>
+  <circle cx="256" cy="256" r="196" fill="#D9D9EC"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <!-- 身体 -->
+  <ellipse cx="256" cy="432" rx="118" ry="66" fill="#8E8EA8"/>
+  <ellipse cx="256" cy="432" rx="58" ry="48" fill="#EDEDF5"/>
+  <ellipse cx="190" cy="452" rx="32" ry="22" fill="#EDEDF5" stroke="#6E6E88" stroke-width="4"/>
+  <ellipse cx="322" cy="452" rx="32" ry="22" fill="#EDEDF5" stroke="#6E6E88" stroke-width="4"/>
+  <!-- 耳朵 -->
+  <path d="M150 188 L134 82 L228 136 Z" fill="#8E8EA8" stroke="#6E6E88" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M362 188 L378 82 L284 136 Z" fill="#8E8EA8" stroke="#6E6E88" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M157 166 L146 106 L201 139 Z" fill="#C9B8E8"/>
+  <path d="M355 166 L366 106 L311 139 Z" fill="#C9B8E8"/>
+  <!-- 头 -->
+  <ellipse cx="256" cy="260" rx="124" ry="116" fill="#9A9AB2"/>
+  <!-- 月牙额纹 -->
+  <path d="M272 158 Q250 170 250 192 Q250 214 272 226 Q258 214 258 192 Q258 170 272 158 Z" fill="#FFD66B" stroke="#D9A83C" stroke-width="3" stroke-linejoin="round"/>
+  <g stroke="#6E6E88" stroke-width="5" stroke-linecap="round" opacity="0.8">
+    <line x1="196" y1="160" x2="204" y2="186"/>
+    <line x1="316" y1="160" x2="308" y2="186"/>
+  </g>
+  <!-- 脸颊白毛 -->
+  <ellipse cx="256" cy="328" rx="82" ry="60" fill="#EDEDF5"/>
+  <!-- 眼睛 蓝色 -->
+  <ellipse cx="198" cy="260" rx="29" ry="33" fill="#FFFFFF"/>
+  <ellipse cx="314" cy="260" rx="29" ry="33" fill="#FFFFFF"/>
+  <ellipse cx="198" cy="264" rx="16" ry="20" fill="#4A90D9"/>
+  <ellipse cx="314" cy="264" rx="16" ry="20" fill="#4A90D9"/>
+  <ellipse cx="198" cy="264" rx="7" ry="12" fill="#1A2A3A"/>
+  <ellipse cx="314" cy="264" rx="7" ry="12" fill="#1A2A3A"/>
+  <circle cx="192" cy="256" r="5" fill="#FFFFFF"/>
+  <circle cx="308" cy="256" r="5" fill="#FFFFFF"/>
+  <!-- 鼻子嘴 -->
+  <path d="M242 310 L270 310 L256 325 Z" fill="#C98AA0" stroke="#A56A80" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M256 325 Q256 339 241 343 M256 325 Q256 339 271 343" fill="none" stroke="#55556A" stroke-width="4" stroke-linecap="round"/>
+  <!-- 胡须 -->
+  <g stroke="#D5D5E5" stroke-width="3" stroke-linecap="round">
+    <line x1="124" y1="298" x2="182" y2="310"/>
+    <line x1="126" y1="324" x2="182" y2="320"/>
+    <line x1="388" y1="298" x2="330" y2="310"/>
+    <line x1="386" y1="324" x2="330" y2="320"/>
+  </g>
+  <!-- 项圈 -->
+  <path d="M164 356 Q256 402 348 356 L340 380 Q256 422 172 380 Z" fill="#7765F5"/>
+  <path d="M246 398 L256 412 L266 398 L256 392 Z" fill="#FFD66B" stroke="#D9A83C" stroke-width="3" stroke-linejoin="round"/>
+</svg>
