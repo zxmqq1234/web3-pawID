@@ -35,6 +35,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .message-count { color: var(--muted); font-size: 13px; }
 
 .app-shell { min-height: 100vh; }
+.public-shell { position: relative; min-height: 100vh; }
+.public-demo-tools { position: fixed; right: 24px; bottom: 24px; z-index: 12; display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--border); border-radius: 14px; background: rgba(255, 255, 255, .94); box-shadow: var(--shadow); backdrop-filter: blur(12px); }
+.public-demo-tools .button { min-height: 38px; padding: 0 12px; }
+.public-message-trigger { min-height: 38px; display: inline-flex; align-items: center; gap: 7px; padding: 0 11px; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); background: var(--card); cursor: pointer; font-size: 13px; font-weight: 700; }
+.public-message-trigger:hover { color: var(--primary-dark); border-color: #cfcaff; background: #f5f3ff; }
+.public-message-count { min-width: 20px; padding: 1px 5px; border-radius: 999px; color: white; background: var(--danger); font-size: 11px; text-align: center; }
 .page-container { width: min(1200px, calc(100% - 64px)); margin: 0 auto; padding: 48px 0; }
 .workspace-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: calc(100vh - 64px); }
 .workspace-nav { padding: 28px 16px; background: var(--card); border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
@@ -126,5 +132,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .feature-slot h1, .not-found h1 { font-size: 24px; }
   .drawer { width: 100%; border-radius: 0; }
   .overlay { padding: 0; }
+  .public-demo-tools { right: 16px; bottom: 16px; left: 16px; justify-content: center; }
+  .public-demo-tools .demo-badge { display: none; }
+  .public-demo-tools .button { flex: 1; }
+  .public-message-trigger { flex: 1; justify-content: center; }
   .toast-stack { right: 16px; bottom: 80px; width: calc(100vw - 32px); }
+}
+@media (prefers-contrast: more) {
+  .public-demo-tools, .public-message-trigger { border-color: currentColor; }
 }

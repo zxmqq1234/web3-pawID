@@ -14,6 +14,7 @@ import {
 import type { Pet } from '../../domain/types';
 import { Button, PetAvatar, TopBar } from '../../shared/ui';
 import { useDemoStore } from '../../store/DemoProvider';
+import { resolveAvatarAssetPath } from '../../app/assets';
 import './HomePage.css';
 
 /** 首页价值卡所需的静态说明，链接到已经存在的演示路径。 */
@@ -72,6 +73,7 @@ function HomeNavigation(): JSX.Element {
 
 /** 首页身份卡：将预置 Mochi 的数字形象、网络和状态集中呈现。 */
 function IdentityCard({ pet, guardianCount, balance }: { pet: Pet; guardianCount: number; balance: number }): JSX.Element {
+  const displayPet = { ...pet, avatarAssetPath: resolveAvatarAssetPath(pet.avatarAssetPath, pet.species) };
   return (
     <article className="identity-card">
       <div className="identity-card-topline">
@@ -81,7 +83,7 @@ function IdentityCard({ pet, guardianCount, balance }: { pet: Pet; guardianCount
       <div className="identity-card-portrait">
         <div className="orbit orbit-one" />
         <div className="orbit orbit-two" />
-        <PetAvatar pet={pet} showPresetLabel size="large" />
+        <PetAvatar pet={displayPet} showPresetLabel size="large" />
         <span className="portrait-stamp"><PawPrint size={15} aria-hidden="true" />VERIFIED DEMO</span>
       </div>
       <div className="identity-card-info">

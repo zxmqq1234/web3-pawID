@@ -30,6 +30,7 @@ import {
   StatusTag,
   useToast,
 } from '../../shared/ui';
+import { resolveAvatarAssetPath } from '../../app/assets';
 import './overview.css';
 
 /** 总览只接收宠物 ID，由上层路由或工作台壳负责解析 Hash。 */
@@ -44,7 +45,7 @@ interface EditFormState {
   introduction: string;
 }
 
-/** 从 IndexedDB 读取真实照片，读不到时让总览安全降级到预置形象。 */
+/** 从 IndexedDB 读取本地照片，读不到时让总览安全降级到预置形象。 */
 function useStoredPhoto(photoKey: string | null): string | undefined {
   const [photoUrl, setPhotoUrl] = useState<string>();
 
@@ -116,6 +117,7 @@ export default function OverviewPage({ petId }: OverviewPageProps): JSX.Element 
   const { state, actions, selectors } = useDemoStore();
   const { showSuccess, showError } = useToast();
   const pet = selectors.getPetById(state, petId);
+  const displayPet = pet ? { ...pet, avatarAssetPath: resolveAvatarAssetPath(pet.avatarAssetPath, pet.species) } : null;
   const photoUrl = useStoredPhoto(pet?.photoKey ?? null);
   const [credentialOpen, setCredentialOpen] = useState(false);
   const [editorOpen, setEditorOpen] = useState(false);
@@ -184,7 +186,7 @@ export default function OverviewPage({ petId }: OverviewPageProps): JSX.Element 
   const speciesLabel = pet.species === 'cat' ? '猫咪' : '狗狗';
   const pawId = `PawID-${pet.id}`;
   const identity = pet.identityAccount;
-  const recentPhotoLabel = photoUrl ? '真实照片' : '真实照片缩略图（待上传）';
+  const recentPhotoLabel = photoUrl ? '本地照片' : '本地照片缩略图（待上传）';
 
   return <section className="overview-page" aria-labelledby="overview-title">
     <header className="overview-heading">
@@ -205,16 +207,16 @@ export default function OverviewPage({ petId }: OverviewPageProps): JSX.Element 
     <div className="overview-hero-grid">
       <article className="overview-portrait-card">
         <div className="overview-card-kicker"><span>数字形象</span><span className="overview-demo-label">预置形象演示</span></div>
-        <PetAvatar pet={pet} photoUrl={photoUrl} equippedAssetPath={overviewData.equipped?.assetPath} size="large" />
+        <PetAvatar pet={displayPet ?? pet} photoUrl={photoUrl} equippedAssetPath={overviewData.equipped?.assetPath} size="large" />
         <div className="overview-portrait-name"><strong>{pet.name}</strong><span>{pet.avatarPresetLabel}</span></div>
         {overviewData.equipped && <div className="overview-equipped"><Sparkles size={14} aria-hidden="true" />当前穿戴：{overviewData.equipped.name}</div>}
       </article>
 
       <article className="overview-identity-card">
         <div className="overview-section-title"><div><span className="overview-card-kicker">身份资料</span><h2>{pet.name} 的 PawID 卡</h2></div><StatusTag tone={overviewData.status.tone}><CheckCircle2 size={14} aria-hidden="true" />{overviewData.status.label}</StatusTag></div>
-        <div className="overview-photo-strip" aria-label="真实照片缩略图区">
+        <div className="overview-photo-strip" aria-label="本地照片缩略图区">
           <div className={`overview-photo-thumb${photoUrl ? ' has-photo' : ''}`}>
-            {photoUrl ? <img src={photoUrl} alt={`${pet.name} 的真实照片`} /> : <><Camera size={20} aria-hidden="true" /><span>暂无本地照片</span></>}
+            {photoUrl ? <img src={photoUrl} alt={`${pet.name} 的本地照片`} /> : <><Camera size={20} aria-hidden="true" /><span>暂无本地照片</span></>}
           </div>
           <div className="overview-photo-copy"><span>{recentPhotoLabel}</span><strong>{pet.publicProfile.appearance}</strong><small>仅存储在当前演示浏览器</small></div>
         </div>

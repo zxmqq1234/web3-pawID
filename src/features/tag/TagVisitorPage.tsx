@@ -55,7 +55,7 @@ export function TagVisitorPage({ petId }: TagVisitorPageProps): JSX.Element {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  /** 真实照片只从用户已保存的公开 photoKey 读取，失败时不降级到数字形象。 */
+  /** 本地照片只从用户已保存的公开 photoKey 读取，失败时不降级到数字形象。 */
   useEffect(() => {
     let mounted = true;
     let nextObjectUrl: string | null = null;
@@ -156,7 +156,7 @@ export function TagVisitorPage({ petId }: TagVisitorPageProps): JSX.Element {
         </form>}
       </section>
 
-      <footer className="tag-visitor-footer"><Info size={15} aria-hidden="true" /><span>同源同浏览器演示可同步，不同设备不会实时共享。PawID 演示不会发送真实通知。</span></footer>
+      <footer className="tag-visitor-footer"><Info size={15} aria-hidden="true" /><span>同源同浏览器演示可同步，不同设备不会实时共享。PawID 演示不会发送真实通知。<br /><a href="#/">回到首页</a> · <a href="#/tag/mochi">体验示例</a></span></footer>
     </div>
   </main>;
 }
