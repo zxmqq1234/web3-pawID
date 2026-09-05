@@ -43,6 +43,7 @@ export interface Pet {
     appearance: string;
     isLostVisible: boolean;
   };
+  /** 演示环境的身份占位数据；不构成真实链上所有权，真实所有权以 DemoState.onChainIdentities 为准。 */
   identityAccount: {
     network: string;
     address: string;
@@ -211,6 +212,56 @@ export interface CreateDraft {
   avatarAssetPath: string;
 }
 
+/** 真实链上宠物身份注册证据；只有完成真实交易回执后才写入，代表链上所有权。 */
+export interface PetChainIdentity {
+  /** 关联的本地宠物 ID。 */
+  petId: string;
+  /** 链上宠物主键（keccak256 派生的 bytes32）。 */
+  petKey: string;
+  /** 链上资料哈希（bytes32）。 */
+  profileHash: string;
+  /** 链上读回的真实所有者地址。 */
+  owner: string;
+  /** Registry 合约地址。 */
+  contractAddress: string;
+  /** 真实交易哈希。 */
+  txHash: string;
+  /** 交易所在区块号。 */
+  blockNumber: number;
+  /** 链 ID（10143）。 */
+  chainId: number;
+  /** 本地记录的注册时间（ISO 字符串）。 */
+  registeredAt: string;
+}
+
+/** 真实链上生命档案锚定证据；只有完成真实交易回执后才写入。 */
+export interface LifeRecordAnchor {
+  /** 证据记录 ID。 */
+  id: string;
+  /** 关联的本地生命档案事件 ID。 */
+  eventId: string;
+  /** 关联的本地宠物 ID。 */
+  petId: string;
+  /** 链上宠物主键。 */
+  petKey: string;
+  /** 记录内容哈希（bytes32）。 */
+  recordHash: string;
+  /** 合约 uint8 记录类型编码。 */
+  recordType: number;
+  /** 可选的链下资料 URI（可为空串）。 */
+  uri: string;
+  /** Registry 合约地址。 */
+  contractAddress: string;
+  /** 真实交易哈希。 */
+  txHash: string;
+  /** 交易所在区块号。 */
+  blockNumber: number;
+  /** 链 ID（10143）。 */
+  chainId: number;
+  /** 本地记录的锚定时间（ISO 字符串）。 */
+  anchoredAt: string;
+}
+
 /** localStorage 中的完整、可序列化演示状态。 */
 export interface DemoState {
   users: User[];
@@ -231,6 +282,10 @@ export interface DemoState {
   createDraft: CreateDraft | null;
   /** 已经完成的一次性操作键，用于抵抗重复提交。 */
   processedOperationKeys: string[];
+  /** 真实链上身份注册证据；初始为空，绝不注入伪造链上身份。 */
+  onChainIdentities: PetChainIdentity[];
+  /** 真实链上生命档案锚定证据；初始为空。 */
+  lifeRecordAnchors: LifeRecordAnchor[];
 }
 
 /** 用于新增宠物的最小资料输入。 */

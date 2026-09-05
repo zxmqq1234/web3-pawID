@@ -163,6 +163,10 @@ export const SEED_STATE = deepFreeze<DemoState>({
   failNext: false,
   createDraft: null,
   processedOperationKeys: [],
+  // 真实链上证据初始一律为空：演示身份（identityAccount）不代表链上所有权，
+  // 只有完成真实 Monad 交易回执后才由 Store 写入，绝不预置伪造链上身份。
+  onChainIdentities: [],
+  lifeRecordAnchors: [],
 });
 
 /** 返回一份可供 Provider 使用的全新种子状态。 */
