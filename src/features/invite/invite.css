@@ -1,0 +1,381 @@
+.invite-public-page {
+  width: min(820px, calc(100% - 32px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px 0 52px;
+  color: var(--text);
+}
+
+.invite-public-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.invite-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.invite-demo-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.invite-confirm-card {
+  position: relative;
+  padding: clamp(22px, 5vw, 48px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.invite-card-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  color: var(--primary);
+  background: #f0eeff;
+}
+
+.invite-confirm-card h1 {
+  max-width: 630px;
+  margin: 6px 0 12px;
+  font-size: clamp(28px, 5vw, 42px);
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.invite-intro {
+  margin: 0;
+  color: var(--muted);
+}
+
+.invite-intro strong {
+  color: var(--text);
+}
+
+.invite-pet-summary {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 30px 0 26px;
+  padding: 20px;
+  border: 1px solid #e1ddff;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f8f6ff, #fffdf7);
+}
+
+.invite-pet-summary .pet-avatar {
+  flex: 0 0 auto;
+}
+
+.invite-pet-summary h2 {
+  margin: 0 0 3px;
+  font-size: 25px;
+}
+
+.invite-pet-summary p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.invite-pet-summary .muted-text {
+  max-width: 470px;
+  margin-top: 10px;
+}
+
+.invite-relation-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--border);
+}
+
+.invite-relation-summary div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--card);
+}
+
+.invite-relation-summary span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.invite-relation-summary strong {
+  font-size: 14px;
+}
+
+.invite-status-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 13px;
+  background: #fafafd;
+}
+
+.invite-status-block p {
+  margin: 1px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.invite-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.invite-action-row .button {
+  min-width: 142px;
+}
+
+.invite-readonly-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 12px 14px;
+  border: 1px solid #ecebf5;
+  border-radius: 11px;
+  color: var(--muted);
+  background: #fbfbfe;
+  font-size: 13px;
+}
+
+.invite-readonly-note svg {
+  flex: 0 0 auto;
+  color: var(--primary);
+}
+
+.invite-twin-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 23px;
+  padding: 18px;
+  border: 1px solid #dfd7ff;
+  border-radius: 16px;
+  background: linear-gradient(105deg, #f7f5ff, #fffaf0);
+}
+
+.invite-twin-member {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 108px;
+  text-align: center;
+}
+
+.invite-twin-member .pet-avatar {
+  width: 82px;
+  height: 82px;
+  margin-bottom: 3px;
+}
+
+.invite-twin-member strong {
+  font-size: 14px;
+}
+
+.invite-twin-member span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.invite-twin-plus {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  background: var(--primary);
+  font-weight: 800;
+}
+
+.invite-family-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 23px;
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.invite-link-arrow {
+  transform: rotate(180deg);
+}
+
+.invite-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.invite-footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.invite-footer-links a:hover,
+.invite-back-link:hover,
+.invite-family-link:hover {
+  color: var(--primary-dark);
+}
+
+.invite-celebration {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -10px -10px 25px;
+  padding: 14px 18px;
+  border: 1px solid #e0d7ff;
+  border-radius: 14px;
+  color: var(--primary-dark);
+  background: #f7f4ff;
+  animation: invite-celebration-in .45s ease both;
+}
+
+.invite-celebration > svg {
+  flex: 0 0 auto;
+}
+
+.invite-celebration div {
+  display: flex;
+  flex-direction: column;
+}
+
+.invite-celebration strong {
+  font-size: 15px;
+}
+
+.invite-celebration span:not(.invite-confetti) {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.invite-confetti {
+  position: absolute;
+  top: -7px;
+  padding: 4px 7px;
+  border-radius: 6px;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  transform: rotate(-10deg);
+  animation: invite-confetti-drop .8s ease both;
+}
+
+.confetti-a {
+  right: 16%;
+  background: var(--primary);
+}
+
+.confetti-b {
+  right: 7%;
+  background: #ed9960;
+  animation-delay: .16s;
+}
+
+@keyframes invite-celebration-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes invite-confetti-drop {
+  from { opacity: 0; transform: translateY(-18px) rotate(-10deg); }
+  to { opacity: 1; transform: translateY(0) rotate(-10deg); }
+}
+
+@media (max-width: 600px) {
+  .invite-public-page {
+    width: calc(100% - 24px);
+    padding-top: 17px;
+  }
+
+  .invite-public-brand {
+    margin-bottom: 15px;
+  }
+
+  .invite-confirm-card {
+    padding: 22px 17px;
+    border-radius: 18px;
+  }
+
+  .invite-pet-summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .invite-pet-summary .pet-avatar {
+    width: 118px;
+    height: 118px;
+  }
+
+  .invite-relation-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .invite-relation-summary div {
+    padding: 11px 13px;
+  }
+
+  .invite-action-row {
+    flex-direction: column;
+  }
+
+  .invite-action-row .button {
+    width: 100%;
+  }
+
+  .invite-twin-card {
+    gap: 5px;
+    padding: 14px 8px;
+  }
+
+  .invite-twin-member {
+    min-width: 92px;
+  }
+
+  .invite-twin-member .pet-avatar {
+    width: 68px;
+    height: 68px;
+  }
+
+  .invite-footer-links {
+    flex-wrap: wrap;
+  }
+}
