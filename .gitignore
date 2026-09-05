@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.local
+.vite/
+
+# 本地密钥/钱包文件，严禁提交
+.secrets/

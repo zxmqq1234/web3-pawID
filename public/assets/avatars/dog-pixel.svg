@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数字形象 像素风 狗：16x16像素网格狗头，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Pixel dog avatar" shape-rendering="crispEdges">
+  <title>数字形象 像素宠物 狗</title>
+  <rect width="512" height="512" rx="64" fill="#1E2430"/>
+  <g>
+    <rect x="48" y="64" width="16" height="16" fill="#7765F5"/>
+    <rect x="448" y="64" width="16" height="16" fill="#7765F5"/>
+    <rect x="48" y="416" width="16" height="16" fill="#3FA46A"/>
+    <rect x="448" y="416" width="16" height="16" fill="#3FA46A"/>
+    <rect x="96" y="96" width="16" height="16" fill="#FFD66B"/>
+    <rect x="400" y="96" width="16" height="16" fill="#FFD66B"/>
+  </g>
+  <g>
+    <!-- 垂耳像素 -->
+    <rect x="96" y="160" width="64" height="160" fill="#C98F2E"/>
+    <rect x="352" y="160" width="64" height="160" fill="#C98F2E"/>
+    <rect x="96" y="160" width="32" height="160" fill="#A5731F"/>
+    <!-- 头像素 -->
+    <rect x="160" y="128" width="192" height="224" fill="#EDBE5D"/>
+    <rect x="192" y="128" width="128" height="48" fill="#F5D489"/>
+    <!-- 嘴套像素 -->
+    <rect x="192" y="288" width="128" height="96" fill="#F7DC9E"/>
+    <!-- 眼像素 -->
+    <rect x="192" y="224" width="48" height="48" fill="#3A2A1A"/>
+    <rect x="272" y="224" width="48" height="48" fill="#3A2A1A"/>
+    <rect x="200" y="232" width="16" height="16" fill="#FFFFFF"/>
+    <rect x="280" y="232" width="16" height="16" fill="#FFFFFF"/>
+    <!-- 鼻子像素 -->
+    <rect x="240" y="304" width="32" height="24" fill="#3A2A1A"/>
+    <rect x="244" y="308" width="12" height="8" fill="#8A8A8A"/>
+    <rect x="248" y="328" width="16" height="16" fill="#6B4A2A"/>
+    <rect x="224" y="344" width="16" height="16" fill="#6B4A2A"/>
+    <rect x="272" y="344" width="16" height="16" fill="#6B4A2A"/>
+    <!-- 舌头像素 -->
+    <rect x="248" y="360" width="16" height="24" fill="#E86A7A"/>
+  </g>
+  <rect x="176" y="416" width="160" height="40" fill="#7765F5"/>
+  <rect x="192" y="428" width="16" height="16" fill="#FFFFFF"/>
+  <rect x="216" y="428" width="16" height="16" fill="#7DF0C0"/>
+  <rect x="240" y="428" width="16" height="16" fill="#FFD66B"/>
+  <rect x="264" y="428" width="16" height="16" fill="#FF9EB0"/>
+  <rect x="288" y="428" width="16" height="16" fill="#FFFFFF"/>
+</svg>

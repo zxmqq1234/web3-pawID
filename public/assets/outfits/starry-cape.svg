@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 装扮 星空披风：透明背景披风图层，可叠加头像底部，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Starry cape outfit layer">
+  <title>装扮 星空披风</title>
+  <!-- 披风主体 -->
+  <path d="M96 120 Q256 60 416 120 L380 460 Q256 500 132 460 Z" fill="#4A3FA3" stroke="#2E2670" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M120 132 Q256 78 392 132 L362 446 Q256 480 150 446 Z" fill="#5A4FC4"/>
+  <!-- 内衬 -->
+  <path d="M160 150 Q256 108 352 150 L330 430 Q256 458 182 430 Z" fill="#7765F5"/>
+  <!-- 星月图案 -->
+  <g fill="#FFD66B">
+    <path d="M256 200 l12 26 28 4 -20 20 5 28 -25 -13 -25 13 5 -28 -20 -20 28 -4 Z"/>
+    <circle cx="200" cy="300" r="10"/>
+    <circle cx="312" cy="300" r="10"/>
+    <circle cx="230" cy="360" r="7"/>
+    <circle cx="282" cy="360" r="7"/>
+  </g>
+  <path d="M320 180 Q306 190 306 208 Q306 226 322 236 Q310 230 304 218 Q310 196 320 180 Z" fill="#FFF3C4" stroke="#D9A83C" stroke-width="3" stroke-linejoin="round"/>
+  <g fill="#FFFFFF" opacity="0.85">
+    <circle cx="186" cy="220" r="5"/>
+    <circle cx="336" cy="250" r="5"/>
+    <circle cx="210" cy="400" r="5"/>
+    <circle cx="302" cy="400" r="5"/>
+    <circle cx="256" cy="300" r="4"/>
+    <circle cx="180" cy="330" r="4"/>
+    <circle cx="332" cy="330" r="4"/>
+  </g>
+  <!-- 领口系带 -->
+  <ellipse cx="180" cy="116" rx="26" ry="20" fill="#FFD66B" stroke="#D9A83C" stroke-width="5"/>
+  <ellipse cx="332" cy="116" rx="26" ry="20" fill="#FFD66B" stroke="#D9A83C" stroke-width="5"/>
+  <path d="M200 124 Q256 150 312 124" fill="none" stroke="#FFD66B" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="256" cy="140" r="16" fill="#FF9EB0" stroke="#B94E78" stroke-width="5"/>
+  <circle cx="250" cy="134" r="5" fill="#FFFFFF" opacity="0.8"/>
+  <!-- 下摆波浪 -->
+  <path d="M132 460 Q170 430 208 456 Q246 482 284 456 Q322 430 380 460" fill="none" stroke="#FFD66B" stroke-width="6" stroke-linecap="round"/>
+</svg>

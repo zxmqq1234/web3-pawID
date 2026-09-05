@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 装扮 蝴蝶结：透明背景粉色蝴蝶结图层，可叠加头像顶部，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Pink bow outfit layer">
+  <title>装扮 粉色蝴蝶结</title>
+  <!-- 左翼 -->
+  <path d="M236 200 Q150 120 92 150 Q60 168 78 216 Q94 260 150 262 Q200 264 236 230 Z" fill="#F2729B" stroke="#B94E78" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M220 206 Q166 158 118 168 Q138 210 168 226 Q198 240 224 224 Z" fill="#F8A9C4"/>
+  <!-- 右翼 -->
+  <path d="M276 200 Q362 120 420 150 Q452 168 434 216 Q418 260 362 262 Q312 264 276 230 Z" fill="#F2729B" stroke="#B94E78" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M292 206 Q346 158 394 168 Q374 210 344 226 Q314 240 288 224 Z" fill="#F8A9C4"/>
+  <!-- 缎带尾 -->
+  <path d="M232 246 L200 322 L234 310 L246 340 L266 250 Z" fill="#E85E8C" stroke="#B94E78" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M280 246 L312 322 L278 310 L266 340 L246 250 Z" fill="#E85E8C" stroke="#B94E78" stroke-width="6" stroke-linejoin="round"/>
+  <!-- 结心 -->
+  <rect x="226" y="196" width="60" height="60" rx="20" fill="#D94F80" stroke="#8F2C52" stroke-width="6"/>
+  <ellipse cx="248" cy="214" rx="12" ry="8" fill="#FFFFFF" opacity="0.65"/>
+  <!-- 高光 -->
+  <circle cx="130" cy="190" r="10" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="382" cy="190" r="10" fill="#FFFFFF" opacity="0.7"/>
+</svg>

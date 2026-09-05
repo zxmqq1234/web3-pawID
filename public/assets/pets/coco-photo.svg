@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Coco 肖像：海豹双色布偶猫（母），深棕重点色面具配白色火焰纹，蓝色眼睛，粉色项圈，耳边小花，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Coco seal bicolor ragdoll cat portrait">
+  <title>Coco 海豹双色布偶猫肖像</title>
+  <rect width="512" height="512" rx="96" fill="#FDF0F3"/>
+  <circle cx="256" cy="256" r="196" fill="#F1D9E2"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.7"/>
+  <!-- 身体 奶油色 -->
+  <ellipse cx="256" cy="430" rx="120" ry="70" fill="#EFDCC4"/>
+  <ellipse cx="256" cy="430" rx="62" ry="52" fill="#FFFFFF"/>
+  <!-- 爪子 白手套 -->
+  <ellipse cx="188" cy="452" rx="34" ry="24" fill="#FFFFFF" stroke="#C9A87A" stroke-width="4"/>
+  <ellipse cx="324" cy="452" rx="34" ry="24" fill="#FFFFFF" stroke="#C9A87A" stroke-width="4"/>
+  <!-- 耳朵 深棕重点色 -->
+  <path d="M148 190 L128 84 L224 138 Z" fill="#5A3A28" stroke="#3E2718" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M364 190 L384 84 L288 138 Z" fill="#5A3A28" stroke="#3E2718" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M155 168 L143 108 L199 141 Z" fill="#D9A8A8"/>
+  <path d="M357 168 L369 108 L313 141 Z" fill="#D9A8A8"/>
+  <!-- 头 奶油底 -->
+  <ellipse cx="256" cy="262" rx="128" ry="118" fill="#EBD9C2"/>
+  <!-- 海豹色面具 -->
+  <path d="M150 220 Q150 160 256 156 Q362 160 362 220 Q362 300 310 330 Q280 344 256 344 Q232 344 202 330 Q150 300 150 220 Z" fill="#6B4A30"/>
+  <!-- 白色火焰纹：从额头直下到口鼻 -->
+  <path d="M244 160 Q238 230 232 292 L244 304 L268 304 L280 292 Q274 230 268 160 Q256 152 244 160 Z" fill="#FFFFFF"/>
+  <!-- 口鼻白毛 -->
+  <ellipse cx="256" cy="328" rx="72" ry="52" fill="#FFFFFF"/>
+  <!-- 眼睛 布偶蓝 -->
+  <ellipse cx="198" cy="258" rx="29" ry="33" fill="#FFFFFF"/>
+  <ellipse cx="314" cy="258" rx="29" ry="33" fill="#FFFFFF"/>
+  <ellipse cx="198" cy="262" rx="16" ry="20" fill="#4A90D9"/>
+  <ellipse cx="314" cy="262" rx="16" ry="20" fill="#4A90D9"/>
+  <ellipse cx="198" cy="262" rx="7" ry="12" fill="#1A2A3A"/>
+  <ellipse cx="314" cy="262" rx="7" ry="12" fill="#1A2A3A"/>
+  <circle cx="192" cy="254" r="5" fill="#FFFFFF"/>
+  <circle cx="308" cy="254" r="5" fill="#FFFFFF"/>
+  <!-- 腮红 -->
+  <ellipse cx="172" cy="300" rx="15" ry="9" fill="#E88AA0" opacity="0.6"/>
+  <ellipse cx="340" cy="300" rx="15" ry="9" fill="#E88AA0" opacity="0.6"/>
+  <!-- 鼻子嘴 -->
+  <path d="M242 308 L270 308 L256 323 Z" fill="#E89AAF" stroke="#B95E78" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M256 323 Q256 337 241 341 M256 323 Q256 337 271 341" fill="none" stroke="#4A2E1A" stroke-width="4" stroke-linecap="round"/>
+  <!-- 胡须 -->
+  <g stroke="#8A7A6A" stroke-width="3" stroke-linecap="round" opacity="0.9">
+    <line x1="120" y1="298" x2="180" y2="310"/>
+    <line x1="122" y1="324" x2="180" y2="320"/>
+    <line x1="392" y1="298" x2="332" y2="310"/>
+    <line x1="390" y1="324" x2="332" y2="320"/>
+  </g>
+  <!-- 耳边小花 -->
+  <g>
+    <circle cx="352" cy="112" r="12" fill="#F2A0B5" stroke="#C96A85" stroke-width="3"/>
+    <circle cx="372" cy="112" r="12" fill="#F2A0B5" stroke="#C96A85" stroke-width="3"/>
+    <circle cx="356" cy="130" r="12" fill="#F2A0B5" stroke="#C96A85" stroke-width="3"/>
+    <circle cx="368" cy="130" r="12" fill="#F2A0B5" stroke="#C96A85" stroke-width="3"/>
+    <circle cx="362" cy="121" r="8" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
+  </g>
+  <!-- 项圈 粉色 -->
+  <path d="M162 356 Q256 404 350 356 L342 380 Q256 424 170 380 Z" fill="#E86A7A"/>
+  <circle cx="256" cy="404" r="14" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
+  <circle cx="256" cy="404" r="4" fill="#B94E5E"/>
+</svg>

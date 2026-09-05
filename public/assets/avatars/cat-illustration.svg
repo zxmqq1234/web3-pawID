@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数字形象 插画风 猫：扁平手绘猫头，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Illustration cat avatar">
+  <title>数字形象 插画宠物 猫</title>
+  <rect width="512" height="512" rx="112" fill="#FFF8EE"/>
+  <!-- 手绘虚线圈 -->
+  <circle cx="256" cy="258" r="188" fill="none" stroke="#7765F5" stroke-width="5" stroke-dasharray="18 14" stroke-linecap="round"/>
+  <!-- 叶子装饰 -->
+  <ellipse cx="104" cy="392" rx="26" ry="12" fill="#7DBF8E" transform="rotate(-30 104 392)"/>
+  <ellipse cx="408" cy="392" rx="26" ry="12" fill="#7DBF8E" transform="rotate(30 408 392)"/>
+  <ellipse cx="112" cy="120" rx="26" ry="12" fill="#F2B8C6" transform="rotate(24 112 120)"/>
+  <ellipse cx="400" cy="120" rx="26" ry="12" fill="#F2B8C6" transform="rotate(-24 400 120)"/>
+  <!-- 耳朵手绘 -->
+  <path d="M152 200 L136 100 L232 152 Z" fill="#F5A54B" stroke="#3A2A1A" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M360 200 L376 100 L280 152 Z" fill="#F5A54B" stroke="#3A2A1A" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M160 178 L151 124 L204 153 Z" fill="#F2B8C6"/>
+  <path d="M352 178 L361 124 L308 153 Z" fill="#F2B8C6"/>
+  <!-- 头手绘粗描边 -->
+  <ellipse cx="256" cy="272" rx="128" ry="120" fill="#F8B25C" stroke="#3A2A1A" stroke-width="7"/>
+  <ellipse cx="256" cy="338" rx="80" ry="56" fill="#FFFFFF"/>
+  <!-- 闭眼笑手绘 -->
+  <path d="M176 272 Q196 292 216 272" fill="none" stroke="#3A2A1A" stroke-width="8" stroke-linecap="round"/>
+  <path d="M296 272 Q316 292 336 272" fill="none" stroke="#3A2A1A" stroke-width="8" stroke-linecap="round"/>
+  <!-- 腮红手绘斜线 -->
+  <g stroke="#E86A7A" stroke-width="5" stroke-linecap="round" opacity="0.8">
+    <line x1="150" y1="306" x2="170" y2="326"/>
+    <line x1="162" y1="302" x2="182" y2="322"/>
+    <line x1="342" y1="326" x2="362" y2="306"/>
+    <line x1="330" y1="322" x2="350" y2="302"/>
+  </g>
+  <path d="M240 316 L272 316 L256 332 Z" fill="#3A2A1A"/>
+  <path d="M256 332 Q256 346 242 350 M256 332 Q256 346 270 350" fill="none" stroke="#3A2A1A" stroke-width="6" stroke-linecap="round"/>
+  <!-- 手绘胡须 -->
+  <g stroke="#3A2A1A" stroke-width="4" stroke-linecap="round">
+    <line x1="128" y1="312" x2="184" y2="320"/>
+    <line x1="384" y1="312" x2="328" y2="320"/>
+  </g>
+  <!-- 插画笔刷点 -->
+  <circle cx="120" cy="240" r="7" fill="#7765F5"/>
+  <circle cx="392" cy="240" r="7" fill="#7765F5"/>
+  <circle cx="256" cy="80" r="8" fill="#FFD66B" stroke="#3A2A1A" stroke-width="4"/>
+</svg>

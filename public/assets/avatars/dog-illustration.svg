@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数字形象 插画风 狗：扁平手绘狗头，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Illustration dog avatar">
+  <title>数字形象 插画宠物 狗</title>
+  <rect width="512" height="512" rx="112" fill="#FFF8EE"/>
+  <circle cx="256" cy="258" r="188" fill="none" stroke="#7765F5" stroke-width="5" stroke-dasharray="18 14" stroke-linecap="round"/>
+  <ellipse cx="104" cy="392" rx="26" ry="12" fill="#7DBF8E" transform="rotate(-30 104 392)"/>
+  <ellipse cx="408" cy="392" rx="26" ry="12" fill="#7DBF8E" transform="rotate(30 408 392)"/>
+  <ellipse cx="112" cy="120" rx="26" ry="12" fill="#F2C879" transform="rotate(24 112 120)"/>
+  <ellipse cx="400" cy="120" rx="26" ry="12" fill="#F2C879" transform="rotate(-24 400 120)"/>
+  <!-- 垂耳手绘 -->
+  <path d="M140 220 Q108 310 150 348 Q184 336 180 250 Z" fill="#C98F2E" stroke="#3A2A1A" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M372 220 Q404 310 362 348 Q328 336 332 250 Z" fill="#C98F2E" stroke="#3A2A1A" stroke-width="7" stroke-linejoin="round"/>
+  <!-- 头手绘 -->
+  <ellipse cx="256" cy="268" rx="126" ry="120" fill="#EDBE5D" stroke="#3A2A1A" stroke-width="7"/>
+  <ellipse cx="256" cy="336" rx="68" ry="52" fill="#F7DC9E"/>
+  <!-- 笑眼手绘 -->
+  <path d="M178 268 Q198 288 218 268" fill="none" stroke="#3A2A1A" stroke-width="8" stroke-linecap="round"/>
+  <path d="M294 268 Q314 288 334 268" fill="none" stroke="#3A2A1A" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="256" cy="320" rx="22" ry="16" fill="#3A2A1A"/>
+  <circle cx="249" cy="315" r="5" fill="#8A8A8A"/>
+  <path d="M256 336 Q256 350 242 354 M256 336 Q256 350 270 354" fill="none" stroke="#3A2A1A" stroke-width="6" stroke-linecap="round"/>
+  <!-- 吐舌 -->
+  <path d="M244 362 Q256 392 268 362 Q260 356 256 358 Q252 356 244 362 Z" fill="#E86A7A" stroke="#3A2A1A" stroke-width="5" stroke-linejoin="round"/>
+  <g stroke="#E86A7A" stroke-width="5" stroke-linecap="round" opacity="0.8">
+    <line x1="152" y1="304" x2="172" y2="322"/>
+    <line x1="340" y1="322" x2="360" y2="304"/>
+  </g>
+  <circle cx="120" cy="238" r="7" fill="#7765F5"/>
+  <circle cx="392" cy="238" r="7" fill="#7765F5"/>
+  <circle cx="256" cy="80" r="8" fill="#FFD66B" stroke="#3A2A1A" stroke-width="4"/>
+</svg>
