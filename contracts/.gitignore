@@ -1,0 +1,4 @@
+# Foundry 构建产物与广播记录不入库（本文件位于 contracts/ 内，仅约束合约工程）。
+/out
+/cache
+/broadcast
