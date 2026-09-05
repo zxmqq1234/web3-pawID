@@ -10,7 +10,9 @@ import type {
   FoundReportInput,
   InventoryItemCode,
   LifeEventInput,
+  LifeRecordAnchor,
   LostCaseInput,
+  PetChainIdentity,
   UpdatePetInput,
 } from '../domain/types';
 import { cloneSeedState } from '../domain/seed';
@@ -24,6 +26,16 @@ import {
 } from './actions';
 import { clearImageStore, clearStoredDemoState, loadDemoState, saveDemoState } from './storage';
 import * as selectors from './selectors';
+import {
+  anchorRecordOnChain,
+  buildPetKey,
+  hashProfile,
+  hashRecord,
+  registerPetOnChain as registerPetOnChainTx,
+  RECORD_TYPE_CODES,
+} from '../web3/registry';
+import { requestConnectedAccount } from '../web3/provider';
+import { Web3Error } from '../web3/errors';
 
 /** 统一状态与异步 action 的 Store 上下文。 */
 export interface DemoStoreValue {
@@ -55,6 +67,10 @@ export interface DemoActions {
   saveCreateDraft(draft: CreateDraft): void;
   clearCreateDraft(): void;
   resetDemo(): Promise<void>;
+  /** 真实链上注册宠物身份：回执成功后写入并返回证据，失败抛出可恢复错误。 */
+  registerPetOnChain(petId: string): Promise<PetChainIdentity>;
+  /** 真实链上锚定生命档案记录：回执成功后写入并返回证据，失败抛出可恢复错误。 */
+  anchorLifeRecord(eventId: string, options?: { uri?: string }): Promise<LifeRecordAnchor>;
 }
 
 const DemoStoreContext = createContext<DemoStoreValue | null>(null);
@@ -145,7 +161,79 @@ export function DemoProvider({ children }: PropsWithChildren): JSX.Element {
         dispatch({ type: 'RESET', state: cloneSeedState() });
       });
     },
-  }), [run, state.currentRole, state.serviceInterests]);
+    /**
+     * 真实链上注册宠物身份（Monad Testnet）。
+     * 流程：幂等检查 → 取钱包账户 → 派生 petKey/profileHash → 发交易等回执 → 写入证据。
+     * 不走演示失败注入（failNext），失败一律抛出 Web3Error，且不写入任何状态。
+     */
+    registerPetOnChain: async (petId) => {
+      const pet = state.pets.find((item) => item.id === petId);
+      if (!pet) throw new Error('宠物不存在，无法注册链上身份');
+      const existing = state.onChainIdentities.find((identity) => identity.petId === petId);
+      if (existing) return existing;
+      const account = await requestConnectedAccount();
+      const petKey = buildPetKey(`pawid:pet:${petId}`);
+      const profileHash = hashProfile({
+        name: pet.name,
+        species: pet.species,
+        breed: pet.breed,
+        gender: pet.gender,
+        birthDate: pet.birthDate,
+        coatColor: pet.coatColor,
+      });
+      const result = await registerPetOnChainTx({ petKey, profileHash, account });
+      const identity: PetChainIdentity = {
+        petId,
+        petKey,
+        profileHash,
+        owner: result.owner,
+        contractAddress: result.contractAddress,
+        txHash: result.txHash,
+        blockNumber: result.blockNumber,
+        chainId: result.chainId,
+        registeredAt: new Date().toISOString(),
+      };
+      dispatch({ type: 'RUN_OPERATION', operation: { type: 'ANCHOR_PET_IDENTITY', petId, identity } });
+      return identity;
+    },
+    /**
+     * 真实链上锚定生命档案记录（Monad Testnet）。
+     * 前置条件：宠物已完成链上身份注册（合约要求 PetNotRegistered 检查）。
+     * 记录哈希使用事件稳定子集（类型/标题/日期/描述），与展示文本一一对应。
+     */
+    anchorLifeRecord: async (eventId, options) => {
+      const event = state.lifeEvents.find((item) => item.id === eventId);
+      if (!event) throw new Error('生命记录不存在，无法锚定');
+      const identity = state.onChainIdentities.find((item) => item.petId === event.petId);
+      if (!identity) {
+        throw new Web3Error('CONTRACT_ERROR', '该宠物尚未完成链上身份注册，请先注册后再锚定记录');
+      }
+      const existing = state.lifeRecordAnchors.find((anchor) => anchor.eventId === eventId);
+      if (existing) return existing;
+      // 证据中的 petKey 持久化为 string；此处窄化回十六进制字面量类型以匹配 registry 冻结签名。
+      const petKey = identity.petKey as `0x${string}`;
+      const recordHash = hashRecord({ type: event.type, title: event.title, date: event.date, description: event.description });
+      const recordType: number = RECORD_TYPE_CODES[event.type];
+      const uri = options?.uri ?? '';
+      const result = await anchorRecordOnChain({ petKey, recordHash, recordType, uri });
+      const anchor: LifeRecordAnchor = {
+        id: createEntityId('anchor'),
+        eventId,
+        petId: event.petId,
+        petKey,
+        recordHash,
+        recordType,
+        uri,
+        contractAddress: result.contractAddress,
+        txHash: result.txHash,
+        blockNumber: result.blockNumber,
+        chainId: result.chainId,
+        anchoredAt: new Date().toISOString(),
+      };
+      dispatch({ type: 'RUN_OPERATION', operation: { type: 'ANCHOR_LIFE_RECORD', anchor } });
+      return anchor;
+    },
+  }), [run, state.currentRole, state.serviceInterests, state.pets, state.lifeEvents, state.onChainIdentities, state.lifeRecordAnchors]);
 
   const value = useMemo<DemoStoreValue>(() => ({ state, actions, selectors }), [state, actions]);
   return <DemoStoreContext.Provider value={value}>{children}</DemoStoreContext.Provider>;

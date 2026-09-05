@@ -10,8 +10,10 @@ import type {
   InventoryItemCode,
   LifeEvent,
   LifeEventInput,
+  LifeRecordAnchor,
   LostCaseInput,
   Pet,
+  PetChainIdentity,
   RelationStatus,
   UpdatePetInput,
 } from '../domain/types';
@@ -43,7 +45,11 @@ export type OperationAction =
   | { type: 'OPEN_LOST_CASE'; input: LostCaseInput; caseId: string; createdAt: string }
   | { type: 'ADD_FOUND_REPORT'; input: FoundReportInput; reportId: string; createdAt: string }
   | { type: 'CLOSE_LOST_CASE'; petId: string; reunited: boolean; closedAt: string; event: LifeEvent; badgeId: string }
-  | { type: 'TOGGLE_INTEREST'; serviceId: string; enabled: boolean; updatedAt: string };
+  | { type: 'TOGGLE_INTEREST'; serviceId: string; enabled: boolean; updatedAt: string }
+  /** 写入真实链上身份注册证据（仅在链上交易回执成功后由 Store 提交）。 */
+  | { type: 'ANCHOR_PET_IDENTITY'; petId: string; identity: PetChainIdentity }
+  /** 写入真实链上生命档案锚定证据（仅在链上交易回执成功后由 Store 提交）。 */
+  | { type: 'ANCHOR_LIFE_RECORD'; anchor: LifeRecordAnchor };
 
 /** 模拟异步业务操作；失败由调用方在 callback 中根据 failNext 做原子消费。 */
 export async function simulateOperation<T>(label: string, callback: () => T, delayMs = 160): Promise<T> {
@@ -318,6 +324,17 @@ export function applyOperation(state: DemoState, operation: OperationAction): De
         ? { ...state, serviceInterests: state.serviceInterests.map((interest) => interest.serviceId === operation.serviceId ? next : interest) }
         : { ...state, serviceInterests: [...state.serviceInterests, next] };
     }
+    case 'ANCHOR_PET_IDENTITY': {
+      // 宠物必须存在；同一 petKey 只保留首条真实证据，重复提交幂等返回原状态。
+      if (!state.pets.some((pet) => pet.id === operation.petId)) return state;
+      if (state.onChainIdentities.some((identity) => identity.petKey === operation.identity.petKey)) return state;
+      return { ...state, onChainIdentities: [...state.onChainIdentities, operation.identity] };
+    }
+    case 'ANCHOR_LIFE_RECORD': {
+      // 同一事件与交易哈希只保留一条锚定证据，保证回执后的写入天然幂等。
+      if (state.lifeRecordAnchors.some((anchor) => anchor.eventId === operation.anchor.eventId && anchor.txHash === operation.anchor.txHash)) return state;
+      return { ...state, lifeRecordAnchors: [...state.lifeRecordAnchors, operation.anchor] };
+    }
   }
 }
 
@@ -389,5 +406,8 @@ export function ensureStateShape(state: DemoState): DemoState {
     ...cloneSeedState(),
     ...state,
     processedOperationKeys: state.processedOperationKeys ?? [],
+    // 旧版本持久化数据没有链上证据字段，加载时补齐空数组，避免运行期 undefined。
+    onChainIdentities: state.onChainIdentities ?? [],
+    lifeRecordAnchors: state.lifeRecordAnchors ?? [],
   };
 }

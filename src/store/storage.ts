@@ -1,4 +1,5 @@
 import { cloneSeedState } from '../domain/seed';
+import { ensureStateShape } from './actions';
 import type { DemoState } from '../domain/types';
 
 /** 演示状态的本地持久化命名空间。 */
@@ -21,7 +22,8 @@ export function loadDemoState(): DemoState {
     const raw = window.localStorage.getItem(DEMO_STORAGE_KEY);
     if (!raw) return cloneSeedState();
     const parsed: unknown = JSON.parse(raw);
-    if (isDemoState(parsed)) return parsed;
+    // 旧版本数据可能缺少链上证据字段，加载时统一用 ensureStateShape 补齐。
+    if (isDemoState(parsed)) return ensureStateShape(parsed);
   } catch {
     // 损坏的本地数据使用种子恢复，不阻塞应用启动。
   }
