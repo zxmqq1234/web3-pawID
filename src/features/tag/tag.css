@@ -1,0 +1,79 @@
+.tag-visitor-page {
+  --tag-ink: #202c38;
+  --tag-muted: #6e7c87;
+  --tag-border: #dbe5ea;
+  --tag-paper: #fff;
+  --tag-teal: #1a7f74;
+  --tag-red: #c34855;
+  --tag-orange: #b87811;
+  min-height: 100vh;
+  padding: 32px 20px 60px;
+  color: var(--tag-ink);
+  background: radial-gradient(circle at 50% -10%, #effaf7, transparent 45%), #f6f8f7;
+}
+
+.tag-visitor-shell { width: min(560px, 100%); margin: 0 auto; }
+.tag-visitor-header { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.tag-brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 13px 13px 13px 4px; color: #fff; background: var(--tag-teal); font-size: 20px; font-weight: 900; transform: rotate(-4deg); }
+.tag-brand-name { display: block; font-size: 17px; font-weight: 850; letter-spacing: -.035em; }
+.tag-demo-label { display: block; color: var(--tag-muted); font-size: 11px; }
+.tag-profile-card, .tag-status-card, .tag-lost-card, .tag-report-form { border: 1px solid var(--tag-border); border-radius: 24px; background: var(--tag-paper); box-shadow: 0 20px 55px rgba(52, 77, 85, .07); }
+.tag-profile-card { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 23px; align-items: center; padding: 22px; }
+.tag-photo-frame { aspect-ratio: 1; overflow: hidden; border-radius: 19px; background: #e9f2f0; }
+.tag-photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tag-photo-placeholder { display: grid; place-items: center; width: 100%; height: 100%; padding: 15px; color: var(--tag-muted); background: repeating-linear-gradient(135deg, #edf5f2 0, #edf5f2 10px, #e7f0ee 10px, #e7f0ee 20px); font-size: 12px; text-align: center; }
+.tag-profile-copy { min-width: 0; }
+.tag-card-kicker { color: var(--tag-teal); font-size: 10px; font-weight: 850; letter-spacing: .15em; }
+.tag-profile-copy h1 { margin: 7px 0 1px; color: var(--tag-ink); font-size: 36px; line-height: 1.05; letter-spacing: -.07em; }
+.tag-species { margin: 0; color: var(--tag-muted); font-size: 14px; }
+.tag-appearance { margin-top: 23px; padding-top: 13px; border-top: 1px solid #edf1f0; }
+.tag-appearance span { color: var(--tag-muted); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+.tag-appearance p { margin: 5px 0 0; color: var(--tag-ink); font-size: 13px; line-height: 1.6; }
+.tag-status-card { display: flex; align-items: flex-start; gap: 15px; margin-top: 14px; padding: 20px 22px; }
+.tag-status-success { color: var(--tag-teal); background: linear-gradient(135deg, #edf9f3, #fff); }
+.tag-status-danger { color: var(--tag-red); background: linear-gradient(135deg, #fff0ef, #fff); }
+.tag-status-pending { color: var(--tag-orange); background: linear-gradient(135deg, #fff8e7, #fff); }
+.tag-status-icon { display: grid; flex: 0 0 auto; place-items: center; width: 43px; height: 43px; border: 1px solid currentColor; border-radius: 14px; background: rgba(255,255,255,.68); }
+.tag-status-card h2 { margin: 8px 0 2px; color: var(--tag-ink); font-size: 19px; letter-spacing: -.035em; }
+.tag-status-card p { margin: 0; color: var(--tag-muted); font-size: 12px; line-height: 1.6; }
+.tag-lost-card { margin-top: 14px; padding: 20px 22px; }
+.tag-section-heading { display: flex; align-items: flex-start; gap: 9px; color: var(--tag-red); }
+.tag-section-heading h2 { margin: 0; color: var(--tag-ink); font-size: 17px; letter-spacing: -.025em; }
+.tag-lost-details { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin: 18px 0 0; }
+.tag-lost-details div { min-width: 0; padding: 11px 12px; border-radius: 12px; background: #fafbfb; }
+.tag-lost-details dt { color: var(--tag-muted); font-size: 11px; }
+.tag-lost-details dd { margin: 4px 0 0; color: var(--tag-ink); font-size: 13px; font-weight: 700; overflow-wrap: anywhere; }
+.tag-lost-description { margin: 15px 0 0; padding-top: 13px; border-top: 1px solid #edf1f0; color: var(--tag-muted); font-size: 13px; line-height: 1.65; white-space: pre-wrap; }
+.tag-found-section { margin-top: 21px; }
+.tag-found-button { width: 100%; min-height: 54px; border-radius: 17px; color: #fff; background: var(--tag-teal); font-size: 15px; box-shadow: 0 10px 22px rgba(26, 127, 116, .18); }
+.tag-found-button:hover { background: #146a61; }
+.tag-submitted-message { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 14px 0 0; color: var(--tag-teal); font-size: 13px; font-weight: 800; }
+.tag-report-form { padding: 22px; }
+.tag-report-form .tag-section-heading { color: var(--tag-teal); }
+.tag-report-form .tag-section-heading p { margin: 4px 0 0; color: var(--tag-muted); font-size: 12px; font-weight: 400; }
+.tag-report-form .field { margin-top: 21px; }
+.tag-textarea-field { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; color: var(--tag-ink); font-size: 13px; font-weight: 700; }
+.tag-textarea-field textarea, .tag-textarea-field input { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--tag-border); border-radius: 10px; color: var(--tag-ink); background: #fff; font: inherit; line-height: 1.5; }
+.tag-textarea-field textarea { resize: vertical; }
+.tag-textarea-field textarea:focus, .tag-textarea-field input:focus { border-color: var(--tag-teal); outline: 3px solid rgba(26, 127, 116, .14); }
+.tag-report-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 23px; }
+.tag-visitor-footer { display: flex; align-items: flex-start; gap: 7px; margin-top: 23px; color: var(--tag-muted); font-size: 11px; line-height: 1.6; }
+.tag-visitor-footer svg { flex: 0 0 auto; margin-top: 2px; }
+.tag-missing-page { display: grid; place-items: center; }
+.tag-missing-shell { width: min(520px, 100%); padding: 26px 0; }
+.tag-missing-shell .empty-state { border: 1px solid var(--tag-border); border-radius: 24px; background: #fff; box-shadow: 0 20px 55px rgba(52, 77, 85, .07); }
+.tag-example-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 17px; color: var(--tag-teal); font-size: 13px; font-weight: 800; text-decoration: none; }
+.tag-example-link:hover { text-decoration: underline; }
+.tag-sync-note { margin: 16px 0 0; color: var(--tag-muted); font-size: 11px; text-align: center; }
+
+@media (max-width: 480px) {
+  .tag-visitor-page { padding: 22px 14px 42px; }
+  .tag-profile-card { grid-template-columns: 1fr; gap: 17px; padding: 17px; }
+  .tag-photo-frame { width: min(100%, 220px); justify-self: center; }
+  .tag-profile-copy { text-align: center; }
+  .tag-appearance { text-align: left; }
+  .tag-status-card, .tag-lost-card, .tag-report-form { padding: 18px; border-radius: 20px; }
+  .tag-lost-details { grid-template-columns: 1fr; }
+  .tag-report-actions { justify-content: stretch; }
+  .tag-report-actions .button { flex: 1; }
+}
