@@ -16,7 +16,7 @@
 .tag-visitor-header { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
 .tag-brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 13px 13px 13px 4px; color: #fff; background: var(--tag-teal); font-size: 20px; font-weight: 900; transform: rotate(-4deg); }
 .tag-brand-name { display: block; font-size: 17px; font-weight: 850; letter-spacing: -.035em; }
-.tag-demo-label { display: block; color: var(--tag-muted); font-size: 11px; }
+.tag-mode-label { display: block; color: var(--tag-muted); font-size: 11px; }
 .tag-profile-card, .tag-status-card, .tag-lost-card, .tag-report-form { border: 1px solid var(--tag-border); border-radius: 24px; background: var(--tag-paper); box-shadow: 0 20px 55px rgba(52, 77, 85, .07); }
 .tag-profile-card { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 23px; align-items: center; padding: 22px; }
 .tag-photo-frame { aspect-ratio: 1; overflow: hidden; border-radius: 19px; background: #e9f2f0; }
@@ -62,8 +62,8 @@
 .tag-missing-page { display: grid; place-items: center; }
 .tag-missing-shell { width: min(520px, 100%); padding: 26px 0; }
 .tag-missing-shell .empty-state { border: 1px solid var(--tag-border); border-radius: 24px; background: #fff; box-shadow: 0 20px 55px rgba(52, 77, 85, .07); }
-.tag-example-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 17px; color: var(--tag-teal); font-size: 13px; font-weight: 800; text-decoration: none; }
-.tag-example-link:hover { text-decoration: underline; }
+.tag-archive-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 17px; color: var(--tag-teal); font-size: 13px; font-weight: 800; text-decoration: none; }
+.tag-archive-link:hover { text-decoration: underline; }
 .tag-sync-note { margin: 16px 0 0; color: var(--tag-muted); font-size: 11px; text-align: center; }
 
 @media (max-width: 480px) {

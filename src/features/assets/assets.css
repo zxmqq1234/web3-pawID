@@ -67,10 +67,6 @@
   text-transform: uppercase;
 }
 
-.assets-hero-copy > .demo-badge {
-  margin-bottom: 30px;
-}
-
 .assets-hero h1 {
   max-width: 610px;
   margin: 0;
@@ -924,10 +920,6 @@
     min-height: 0;
     padding: 28px 22px 0;
     border-radius: 22px;
-  }
-
-  .assets-hero-copy > .demo-badge {
-    margin-bottom: 22px;
   }
 
   .assets-hero h1 {
