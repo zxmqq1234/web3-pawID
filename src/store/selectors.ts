@@ -50,6 +50,30 @@ export function getPetBalance(state: DemoState, petId: string): number {
   return state.pointEntries.filter((entry) => entry.petId === petId).reduce((total, entry) => total + entry.amount, 0);
 }
 
+/** 积分流通统计，全部数值由流水实时派生，不落任何可过期副本。 */
+export interface PointsCirculation {
+  /** 当前余额：累计获得减去累计消耗。 */
+  balance: number;
+  /** 累计获得：全部正向流水之和。 */
+  totalEarned: number;
+  /** 累计消耗：全部负向流水的绝对值之和。 */
+  totalSpent: number;
+  /** 交易笔数：该宠物的全部流水条数。 */
+  transactionCount: number;
+}
+
+/** 汇总某宠物的积分流通指标，供资产页流通板块一次读取。 */
+export function getPointsCirculation(state: DemoState, petId: string): PointsCirculation {
+  const entries = state.pointEntries.filter((entry) => entry.petId === petId);
+  let totalEarned = 0;
+  let totalSpent = 0;
+  for (const entry of entries) {
+    if (entry.amount > 0) totalEarned += entry.amount;
+    else totalSpent += Math.abs(entry.amount);
+  }
+  return { balance: totalEarned - totalSpent, totalEarned, totalSpent, transactionCount: entries.length };
+}
+
 /** 返回当前宠物所有已接受的监护成员，主监护人排在共同监护人前。 */
 export function getGuardians(state: DemoState, petId: string): GuardianView[] {
   return state.guardianLinks

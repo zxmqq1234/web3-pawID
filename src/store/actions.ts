@@ -14,6 +14,7 @@ import type {
   LostCaseInput,
   Pet,
   PetChainIdentity,
+  PointPackCode,
   RelationStatus,
   UpdatePetInput,
 } from '../domain/types';
@@ -40,7 +41,9 @@ export type OperationAction =
   | { type: 'ADD_LIFE_EVENT'; input: LifeEventInput; event: LifeEvent; rewardEntryId: string; rewardCreatedAt: string }
   | { type: 'UPDATE_LIFE_EVENT'; eventId: string; input: LifeEventInput; updatedAt: string }
   | { type: 'DELETE_LIFE_EVENT'; eventId: string }
-  | { type: 'REDEEM_ITEM'; petId: string; code: InventoryItemCode; itemId: string; createdAt: string; pointEntryId: string }
+  | { type: 'REDEEM_ITEM'; petId: string; code: InventoryItemCode; itemId: string; createdAt: string; pointEntryId: string; transactionId: string }
+  /** 本机积分包领取：不接入支付通道，仅写入一笔正向积分流水并记录操作键防重。 */
+  | { type: 'PURCHASE_POINTS'; petId: string; packCode: PointPackCode; entryId: string; createdAt: string; operationKey: string; transactionId: string }
   | { type: 'EQUIP_ITEM'; petId: string; itemId: string; equipped: boolean }
   | { type: 'OPEN_LOST_CASE'; input: LostCaseInput; caseId: string; createdAt: string }
   | { type: 'ADD_FOUND_REPORT'; input: FoundReportInput; reportId: string; createdAt: string }
@@ -260,8 +263,25 @@ export function applyOperation(state: DemoState, operation: OperationAction): De
         pointEntries: [...state.pointEntries, {
           id: operation.pointEntryId, petId: operation.petId, amount: -catalog.price,
           balanceAfter: balance - catalog.price, kind: 'redeem', taskKey: `redeem:${operation.petId}:${operation.code}`,
-          title: `兑换${catalog.name}`, createdAt: operation.createdAt,
+          title: `兑换${catalog.name}`, createdAt: operation.createdAt, transactionId: operation.transactionId,
         }],
+      };
+    }
+    case 'PURCHASE_POINTS': {
+      // 幂等：相同操作键只入账一次，重复提交返回原状态。
+      if (state.processedOperationKeys.includes(operation.operationKey)) return state;
+      // 积分包必须在固定目录内，且目标宠物必须存在。
+      const pack = fixedPointPackCatalog().find((candidate) => candidate.code === operation.packCode);
+      if (!pack || !state.pets.some((pet) => pet.id === operation.petId)) return state;
+      const balanceAfter = balanceOf(state, operation.petId) + pack.amount;
+      return {
+        ...state,
+        pointEntries: [...state.pointEntries, {
+          id: operation.entryId, petId: operation.petId, amount: pack.amount, balanceAfter,
+          kind: 'purchase' as const, taskKey: null, title: `领取积分包（${pack.amount} PAWS）`,
+          transactionId: operation.transactionId, createdAt: operation.createdAt,
+        }],
+        processedOperationKeys: [...state.processedOperationKeys, operation.operationKey],
       };
     }
     case 'EQUIP_ITEM': {
@@ -347,6 +367,15 @@ export function fixedItemCatalog(): ReadonlyArray<Omit<DemoState['inventoryItems
   ];
 }
 
+/** 固定积分包目录：只提供三档数量，页面不允许自定义金额，也不接入任何真实支付。 */
+export function fixedPointPackCatalog(): ReadonlyArray<{ code: PointPackCode; name: string; amount: number }> {
+  return [
+    { code: 'pack_100', name: '尝鲜包', amount: 100 },
+    { code: 'pack_300', name: '进阶包', amount: 300 },
+    { code: 'pack_600', name: '囤粮包', amount: 600 },
+  ];
+}
+
 /** 纯 reducer 是唯一业务状态写入入口，所有操作均返回不可变新对象。 */
 export function demoReducer(state: DemoState, action: DemoAction): DemoState {
   switch (action.type) {
@@ -382,6 +411,11 @@ export function validateOperation(state: DemoState, operation: OperationAction):
       if (!item) return '该装扮不存在';
       if (state.inventoryItems.some((candidate) => candidate.petId === operation.petId && candidate.code === operation.code)) return '该装扮已在衣橱中';
       if (balanceOf(state, operation.petId) < item.price) return `余额不足，还差 ${item.price - balanceOf(state, operation.petId)} PAWS`;
+      return null;
+    }
+    case 'PURCHASE_POINTS': {
+      // 积分包只允许固定目录内的编码，编码不合法时提前给出可读错误。
+      if (!fixedPointPackCatalog().some((candidate) => candidate.code === operation.packCode)) return '积分包不存在';
       return null;
     }
     case 'CREATE_INVITE': {

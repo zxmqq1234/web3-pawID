@@ -886,6 +886,246 @@
   margin-top: 20px;
 }
 
+/* ============ 积分流通板块 ============ */
+
+/* 板块外壳与成长任务面板保持同一卡片视觉。 */
+.assets-circulation-panel {
+  margin-top: 24px;
+  padding: 28px;
+  border: 1px solid var(--assets-line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 8px 25px rgba(88, 69, 90, .04);
+}
+
+/* 四张统计卡：余额、累计获得、累计消耗、交易笔数。 */
+.circulation-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.circulation-stat {
+  min-width: 0;
+  padding: 15px 17px;
+  border: 1px solid var(--assets-line);
+  border-radius: 14px;
+  background: #fffcfa;
+}
+
+.circulation-stat span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--assets-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.circulation-stat strong {
+  color: var(--assets-ink);
+  font-size: 24px;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+}
+
+.circulation-stat small {
+  margin-left: 4px;
+  color: #a098a4;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* 积分包卡片：固定三档，只能领取不能自定义金额。 */
+.pack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.pack-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--assets-line);
+  border-radius: 18px;
+  background: linear-gradient(150deg, #fffdf8 0%, #f7f2ff 100%);
+}
+
+.pack-card-copy {
+  min-width: 0;
+}
+
+.pack-card h3 {
+  margin: 3px 0 6px;
+  color: var(--assets-ink);
+  font-size: 18px;
+}
+
+.pack-card strong {
+  color: var(--assets-plum);
+  font-size: 28px;
+  letter-spacing: -.03em;
+}
+
+.pack-card strong small {
+  color: #9b8fb4;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.pack-card p {
+  margin: 8px 0 0;
+  color: var(--assets-muted);
+  font-size: 12px;
+}
+
+.pack-readonly {
+  color: #a39ba6;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* 最近交易列表：购买与兑换带平台交易编号，旧流水回退显示类型名。 */
+.recent-transactions {
+  margin-top: 22px;
+}
+
+.recent-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.recent-heading h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--assets-ink);
+  font-size: 15px;
+}
+
+.recent-heading span {
+  color: #a39ba6;
+  font-size: 11px;
+}
+
+.transaction-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.transaction-list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid #f1ebea;
+}
+
+/* 交易金额独立配色；不能复用表格的 point-positive（其 display 为 table-cell）。 */
+.transaction-amount {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.transaction-amount.positive {
+  color: #168160;
+}
+
+.transaction-amount.negative {
+  color: #c05e62;
+}
+
+.transaction-copy {
+  min-width: 0;
+}
+
+.transaction-copy strong {
+  display: block;
+  color: var(--assets-ink);
+  font-size: 13px;
+}
+
+.transaction-copy small {
+  display: block;
+  overflow-wrap: anywhere;
+  margin-top: 2px;
+  color: #aaa1ab;
+  font-size: 10px;
+}
+
+.transaction-meta {
+  color: #958a99;
+  font-size: 11px;
+  text-align: right;
+}
+
+.transaction-meta time {
+  display: block;
+  white-space: nowrap;
+}
+
+.transaction-meta span {
+  display: block;
+  margin-top: 3px;
+  white-space: nowrap;
+}
+
+.transactions-more {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* 购买积分包 Modal 内的免费说明与数字区。 */
+.purchase-content {
+  display: block;
+}
+
+.purchase-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 14px;
+  border: 1px solid #d5e8db;
+  border-radius: 12px;
+  background: #f2faf5;
+  font-size: 12px;
+}
+
+.purchase-note svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: #238263;
+}
+
+.purchase-note strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #238263;
+  font-size: 12px;
+}
+
+.purchase-note p {
+  margin: 0;
+  color: #5c7f6d;
+}
+
+.purchase-numbers {
+  margin-top: 16px;
+}
+
 .readonly-hint {
   margin: 12px 0 0;
   color: #a39ba6;
@@ -906,6 +1146,10 @@
   }
 
   .assets-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .circulation-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

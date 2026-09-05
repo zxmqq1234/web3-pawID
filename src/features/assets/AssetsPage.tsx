@@ -11,6 +11,8 @@ import {
   Crown,
   Gift,
   LockKeyhole,
+  ReceiptText,
+  Repeat,
   Shirt,
   Sparkles,
   WalletCards,
@@ -24,9 +26,11 @@ import type {
   LifeEvent,
   Pet,
   PointEntry,
+  PointEntryKind,
+  PointPackCode,
   Relation,
 } from '../../domain/types';
-import { fixedItemCatalog } from '../../store/actions';
+import { createEntityId, fixedItemCatalog, fixedPointPackCatalog } from '../../store/actions';
 import { useDemoStore } from '../../store/DemoProvider';
 import { Button, EmptyState, Modal, PetAvatar, StatusTag, useToast } from '../../shared/ui';
 import './assets.css';
@@ -55,6 +59,24 @@ interface RedeemTarget {
   price: number;
   assetPath: string;
 }
+
+/** 积分包目录项，仅携带固定编码与数量，页面不允许自定义金额。 */
+interface PointPackMeta {
+  code: PointPackCode;
+  name: string;
+  amount: number;
+}
+
+/** 流水类型显示名；没有平台交易编号的旧流水用它兜底展示。 */
+const POINT_KIND_LABELS: Record<PointEntryKind, string> = {
+  seed: '初始余额',
+  reward: '任务奖励',
+  purchase: '积分包领取',
+  redeem: '装扮兑换',
+};
+
+/** 最近交易板块展示的流水条数，完整明细保留在积分明细标签页。 */
+const RECENT_TRANSACTION_COUNT = 5;
 
 const TAB_ITEMS: Array<{ key: AssetTab; label: string; icon: typeof BadgeCheck }> = [
   { key: 'badges', label: '徽章', icon: BadgeCheck },
@@ -150,6 +172,10 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
   const [busyCode, setBusyCode] = useState<InventoryItemCode | null>(null);
   const [busyItemId, setBusyItemId] = useState<string | null>(null);
   const [operationError, setOperationError] = useState<string | null>(null);
+  const [purchaseTarget, setPurchaseTarget] = useState<PointPackMeta | null>(null);
+  const [busyPackCode, setBusyPackCode] = useState<PointPackCode | null>(null);
+  /** 领取请求令牌：Modal 打开时生成一次，失败重试复用同一令牌保证幂等。 */
+  const [purchaseRequestId, setPurchaseRequestId] = useState<string | null>(null);
 
   const pet = selectors.getPetById(state, petId);
   const balance = selectors.getPetBalance(state, petId);
@@ -165,6 +191,11 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
   const modalBalanceAfter = redeemTarget ? balance - redeemTarget.price : balance;
   const modalShortfall = redeemTarget ? Math.max(0, redeemTarget.price - balance) : 0;
   const canManage = selectors.canManagePet(state, petId);
+  /** 积分流通统计：余额、累计获得、累计消耗与交易笔数全部由流水派生。 */
+  const circulation = selectors.getPointsCirculation(state, petId);
+  const packCatalog = fixedPointPackCatalog();
+  /** 最近交易取最新几条流水，完整明细仍在积分明细标签页。 */
+  const recentEntries = pointEntries.slice(0, RECENT_TRANSACTION_COUNT);
 
   /** 让键盘左右方向切换 tab，Tab 键本身仍可正常移动焦点。 */
   const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>): void => {
@@ -219,6 +250,34 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
     }
   };
 
+  /** 打开积分包 Modal：同时生成一次请求令牌，重复点击确认时复用同一令牌。 */
+  const openPurchaseModal = (pack: PointPackMeta): void => {
+    setOperationError(null);
+    setPurchaseRequestId(createEntityId('purchase'));
+    setPurchaseTarget(pack);
+  };
+
+  /**
+   * 领取积分包：不发生真实支付，仅写入一笔正向流水。
+   * 失败时保留 Modal 和请求令牌便于重试；成功后关闭并弹出提示。
+   */
+  const confirmPurchase = async (): Promise<void> => {
+    if (!purchaseTarget || !canManage || busyPackCode || !purchaseRequestId) return;
+    setBusyPackCode(purchaseTarget.code);
+    setOperationError(null);
+    try {
+      await actions.purchasePoints(petId, purchaseTarget.code, purchaseRequestId);
+      setPurchaseTarget(null);
+      showSuccess(`已领取${purchaseTarget.name}，+${purchaseTarget.amount} PAWS`);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : '领取失败，请稍后重试';
+      setOperationError(message);
+      showError(message);
+    } finally {
+      setBusyPackCode(null);
+    }
+  };
+
   if (!pet) {
     return <div className="assets-page assets-page-empty"><EmptyState title="还没有这位宠物" description="请从有效的 PawID 宠物链接进入成长资产。" /></div>;
   }
@@ -261,6 +320,48 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
       </article>
     </section>
 
+    <section className="assets-circulation-panel" aria-labelledby="circulation-title">
+      <div className="assets-section-heading">
+        <div><p className="assets-kicker"><Repeat size={15} aria-hidden="true" />POINTS CIRCULATION</p><h2 id="circulation-title">积分流通</h2></div>
+        <Button variant="secondary" onClick={() => setTab('wardrobe')}><Shirt size={15} aria-hidden="true" />去衣橱兑换装扮</Button>
+      </div>
+      <div className="circulation-stats" aria-label="积分流通统计">
+        <article className="circulation-stat" aria-label="当前余额"><span>当前余额</span><strong>{circulation.balance}</strong><small>PAWS</small></article>
+        <article className="circulation-stat" aria-label="累计获得"><span>累计获得</span><strong>{circulation.totalEarned}</strong><small>PAWS</small></article>
+        <article className="circulation-stat" aria-label="累计消耗"><span>累计消耗</span><strong>{circulation.totalSpent}</strong><small>PAWS</small></article>
+        <article className="circulation-stat" aria-label="交易笔数"><span>交易笔数</span><strong>{circulation.transactionCount}</strong><small>笔</small></article>
+      </div>
+      <div className="pack-grid" aria-label="购买积分包">
+        {packCatalog.map((pack) => <article className="pack-card" key={pack.code}>
+          <div className="pack-card-copy">
+            <span className="badge-label">PAWS PACK</span>
+            <h3>{pack.name}</h3>
+            <strong>+{pack.amount} <small>PAWS</small></strong>
+            <p>领取后立即计入本机余额，当前不收取任何费用。</p>
+          </div>
+          {canManage
+            ? <Button disabled={busyPackCode === pack.code} onClick={() => openPurchaseModal(pack)}>{busyPackCode === pack.code ? '处理中…' : '购买积分包'}</Button>
+            : <span className="pack-readonly">访客只读</span>}
+        </article>)}
+      </div>
+      <div className="recent-transactions">
+        <div className="recent-heading">
+          <h3><ReceiptText size={15} aria-hidden="true" />最近交易</h3>
+          <span>购买与兑换会生成平台交易编号，仅用于本机流水追溯，不是链上哈希。</span>
+        </div>
+        {recentEntries.length === 0 ? <EmptyState title="还没有积分流水" description="领取积分包或完成任务后，这里会留下第一笔记录。" /> : <ul className="transaction-list">
+          {recentEntries.map((entry) => <li key={entry.id}>
+            <span className={entry.amount >= 0 ? 'transaction-amount positive' : 'transaction-amount negative'}>
+              {entry.amount > 0 ? <ArrowUpRight size={14} aria-hidden="true" /> : <ArrowDownLeft size={14} aria-hidden="true" />}{entry.amount > 0 ? '+' : ''}{entry.amount} PAWS
+            </span>
+            <div className="transaction-copy"><strong>{entry.title}</strong><small>{entry.transactionId ?? POINT_KIND_LABELS[entry.kind]}</small></div>
+            <div className="transaction-meta"><time dateTime={entry.createdAt}>{formatDate(entry.createdAt)}</time><span>变更后余额 {entry.balanceAfter} PAWS</span></div>
+          </li>)}
+        </ul>}
+        <div className="transactions-more"><Button variant="ghost" onClick={() => setTab('points')}>查看完整明细 <ChevronRight size={14} aria-hidden="true" /></Button></div>
+      </div>
+    </section>
+
     <section className="assets-tasks-panel" aria-labelledby="growth-tasks-title">
       <div className="assets-section-heading"><div><p className="assets-kicker">COLLECT THE LITTLE MOMENTS</p><h2 id="growth-tasks-title">成长任务</h2></div><span className="task-progress">{tasks.filter((task) => task.done).length}/{tasks.length} 已完成</span></div>
       <div className="task-list">{tasks.map((task) => <article className={`task-row ${task.done ? 'task-row-done' : ''}`} key={task.key}>
@@ -294,6 +395,23 @@ export function AssetsPage({ petId }: AssetsPageProps): JSX.Element {
 
     <Modal open={Boolean(redeemTarget)} onClose={() => { if (!busyCode) setRedeemTarget(null); }} title="确认兑换装扮" className="redeem-modal">
       {redeemTarget && <div className="redeem-content"><div className="redeem-preview"><img src={localItemPath(redeemTarget.code)} alt={`${redeemTarget.name} 预览`} /><span><Gift size={14} aria-hidden="true" />装扮预览</span></div><div className="redeem-copy"><span className="badge-label">A NEW LOOK FOR {pet.name.toUpperCase()}</span><h3>{redeemTarget.name}</h3><p>兑换后会加入 {pet.name} 的衣橱，你可以随时穿戴或卸下。</p><div className="redeem-numbers"><div><span>价格</span><strong>{redeemTarget.price} <small>PAWS</small></strong></div><div><span>当前余额</span><strong>{balance} <small>PAWS</small></strong></div><div className={modalShortfall > 0 ? 'redeem-after redeem-after-negative' : 'redeem-after'}><span>兑换后</span><strong>{modalBalanceAfter} <small>PAWS</small></strong></div></div>{modalShortfall > 0 && <div className="redeem-shortfall" role="alert"><CircleHelp size={17} aria-hidden="true" /><div><strong>还差 {modalShortfall} PAWS</strong><p>先完成成长任务，再回来兑换。{remainingTasks.length > 0 && <>{' '}<a href={remainingTasks[0].href}>去完成任务 <ChevronRight size={14} aria-hidden="true" /></a></>}</p></div></div>}{operationError && <p className="assets-inline-error" role="alert"><X size={16} aria-hidden="true" />{operationError}</p>}<div className="button-row redeem-actions"><Button variant="secondary" disabled={Boolean(busyCode)} onClick={() => setRedeemTarget(null)}>取消</Button><Button disabled={!canManage || modalShortfall > 0 || Boolean(busyCode)} onClick={() => void confirmRedeem()}>{busyCode ? '兑换中…' : modalShortfall > 0 ? '余额不足' : '确认兑换'}</Button></div>{!canManage && <p className="readonly-hint">当前为访客只读模式，不能兑换或穿戴装扮。</p>}</div></div>}
+    </Modal>
+
+    <Modal open={Boolean(purchaseTarget)} onClose={() => { if (!busyPackCode) setPurchaseTarget(null); }} title="购买积分包" className="redeem-modal">
+      {purchaseTarget && <div className="purchase-content">
+        <div className="purchase-note" role="note"><LockKeyhole size={17} aria-hidden="true" /><div><strong>当前不收取任何费用，不发生真实支付</strong><p>领取积分包不会发起任何支付，PAWS 仅保存在本机，不充值、不提现、不支持用户间转账，也不是链上代币。</p></div></div>
+        <div className="redeem-numbers purchase-numbers">
+          <div><span>积分包</span><strong>{purchaseTarget.name}</strong></div>
+          <div><span>领取数量</span><strong>+{purchaseTarget.amount} <small>PAWS</small></strong></div>
+          <div className="redeem-after"><span>领取后余额</span><strong>{balance + purchaseTarget.amount} <small>PAWS</small></strong></div>
+        </div>
+        {operationError && <p className="assets-inline-error" role="alert"><X size={16} aria-hidden="true" />{operationError}</p>}
+        <div className="button-row redeem-actions">
+          <Button variant="secondary" disabled={Boolean(busyPackCode)} onClick={() => setPurchaseTarget(null)}>取消</Button>
+          <Button disabled={!canManage || Boolean(busyPackCode)} onClick={() => void confirmPurchase()}>{busyPackCode ? '领取中…' : '确认领取积分包'}</Button>
+        </div>
+        {!canManage && <p className="readonly-hint">当前为访客只读模式，不能领取积分包。</p>}
+      </div>}
     </Modal>
   </div>;
 }
