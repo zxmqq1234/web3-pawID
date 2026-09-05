@@ -1,38 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Leo 肖像：金毛寻回犬，正面半身像，本次项目原创矢量演示资源 -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Leo golden retriever portrait">
-  <title>Leo 金毛犬肖像</title>
-  <rect width="512" height="512" rx="96" fill="#EFF3FF"/>
-  <circle cx="256" cy="256" r="196" fill="#DCE6FF"/>
+<!-- Leo 肖像：橘白短毛猫（公），额头虎斑纹，琥珀色眼睛，白色火焰纹，绿色项圈，本次项目原创矢量演示资源 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Leo orange-white tabby cat portrait">
+  <title>Leo 橘白短毛猫肖像</title>
+  <rect width="512" height="512" rx="96" fill="#EBF5EE"/>
+  <circle cx="256" cy="256" r="196" fill="#CBE7D4"/>
   <circle cx="256" cy="256" r="196" fill="none" stroke="#7765F5" stroke-width="10" opacity="0.85"/>
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.7"/>
   <!-- 身体 -->
-  <ellipse cx="256" cy="436" rx="128" ry="66" fill="#E8B04B"/>
-  <ellipse cx="256" cy="436" rx="60" ry="50" fill="#F7DC9E"/>
-  <ellipse cx="182" cy="454" rx="34" ry="22" fill="#F7DC9E" stroke="#C98F2E" stroke-width="4"/>
-  <ellipse cx="330" cy="454" rx="34" ry="22" fill="#F7DC9E" stroke="#C98F2E" stroke-width="4"/>
-  <!-- 垂耳 -->
-  <path d="M138 210 Q110 300 150 340 Q180 330 178 250 Z" fill="#C98F2E" stroke="#A5731F" stroke-width="4"/>
-  <path d="M374 210 Q402 300 362 340 Q332 330 334 250 Z" fill="#C98F2E" stroke="#A5731F" stroke-width="4"/>
+  <ellipse cx="256" cy="430" rx="120" ry="70" fill="#F5A54B"/>
+  <ellipse cx="256" cy="430" rx="62" ry="52" fill="#FFFFFF"/>
+  <!-- 爪子 -->
+  <ellipse cx="188" cy="452" rx="34" ry="24" fill="#FFFFFF" stroke="#E8933C" stroke-width="4"/>
+  <ellipse cx="324" cy="452" rx="34" ry="24" fill="#FFFFFF" stroke="#E8933C" stroke-width="4"/>
+  <!-- 耳朵 -->
+  <path d="M148 190 L128 84 L224 138 Z" fill="#F5A54B" stroke="#D97F26" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M364 190 L384 84 L288 138 Z" fill="#F5A54B" stroke="#D97F26" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M155 168 L143 108 L199 141 Z" fill="#FFB8C1"/>
+  <path d="M357 168 L369 108 L313 141 Z" fill="#FFB8C1"/>
   <!-- 头 -->
-  <ellipse cx="256" cy="258" rx="122" ry="118" fill="#EDBE5D"/>
-  <ellipse cx="256" cy="200" rx="86" ry="52" fill="#F5D489"/>
-  <!-- 眼睛 -->
-  <ellipse cx="202" cy="258" rx="24" ry="26" fill="#3A2A1A"/>
-  <ellipse cx="310" cy="258" rx="24" ry="26" fill="#3A2A1A"/>
-  <circle cx="210" cy="250" r="7" fill="#FFFFFF"/>
-  <circle cx="318" cy="250" r="7" fill="#FFFFFF"/>
-  <!-- 眉毛亮点 -->
-  <ellipse cx="202" cy="226" rx="22" ry="10" fill="#F5D489" opacity="0.9"/>
-  <ellipse cx="310" cy="226" rx="22" ry="10" fill="#F5D489" opacity="0.9"/>
-  <!-- 嘴套 -->
-  <ellipse cx="256" cy="330" rx="66" ry="52" fill="#F7DC9E"/>
-  <ellipse cx="256" cy="314" rx="26" ry="20" fill="#3A2A1A"/>
-  <circle cx="256" cy="308" r="5" fill="#6B6B6B"/>
-  <path d="M256 334 Q256 350 238 354 M256 334 Q256 350 274 354" fill="none" stroke="#6B4A2A" stroke-width="4" stroke-linecap="round"/>
-  <path d="M232 344 Q256 360 280 344" fill="none" stroke="#6B4A2A" stroke-width="4" stroke-linecap="round"/>
-  <!-- 舌头 -->
-  <path d="M244 356 Q256 384 268 356 Q260 350 256 352 Q252 350 244 356 Z" fill="#E86A7A"/>
-  <!-- 项圈 -->
-  <path d="M160 360 Q256 406 352 360 L344 384 Q256 428 168 384 Z" fill="#7765F5"/>
-  <circle cx="256" cy="408" r="14" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
+  <ellipse cx="256" cy="262" rx="128" ry="118" fill="#F8B25C"/>
+  <!-- 虎斑条纹：额头三竖加脸颊短纹 -->
+  <g stroke="#D97F26" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M232 152 L226 186"/>
+    <path d="M256 148 L256 184"/>
+    <path d="M280 152 L286 186"/>
+    <path d="M226 186 Q256 200 286 186"/>
+    <path d="M146 268 L176 276"/>
+    <path d="M148 292 L178 294"/>
+    <path d="M366 268 L336 276"/>
+    <path d="M364 292 L334 294"/>
+  </g>
+  <!-- 白色火焰纹：从额头直下到口鼻 -->
+  <path d="M244 168 Q236 240 228 300 L244 312 L268 312 L284 300 Q276 240 268 168 Q256 160 244 168 Z" fill="#FFFFFF"/>
+  <!-- 脸颊白毛 -->
+  <ellipse cx="256" cy="330" rx="80" ry="58" fill="#FFFFFF"/>
+  <!-- 眼睛 琥珀色竖瞳 -->
+  <ellipse cx="196" cy="262" rx="30" ry="34" fill="#FFFFFF"/>
+  <ellipse cx="316" cy="262" rx="30" ry="34" fill="#FFFFFF"/>
+  <ellipse cx="196" cy="266" rx="17" ry="21" fill="#D9A83C"/>
+  <ellipse cx="316" cy="266" rx="17" ry="21" fill="#D9A83C"/>
+  <ellipse cx="196" cy="266" rx="5" ry="14" fill="#1E2A24"/>
+  <ellipse cx="316" cy="266" rx="5" ry="14" fill="#1E2A24"/>
+  <circle cx="189" cy="257" r="5" fill="#FFFFFF"/>
+  <circle cx="309" cy="257" r="5" fill="#FFFFFF"/>
+  <!-- 鼻子嘴 -->
+  <path d="M240 312 L272 312 L256 328 Z" fill="#C65D4E" stroke="#9E4636" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M256 328 Q256 342 240 346 M256 328 Q256 342 272 346" fill="none" stroke="#8A5A3B" stroke-width="4" stroke-linecap="round"/>
+  <!-- 胡须 -->
+  <g stroke="#B98A5E" stroke-width="3" stroke-linecap="round" opacity="0.9">
+    <line x1="120" y1="300" x2="180" y2="312"/>
+    <line x1="122" y1="326" x2="180" y2="322"/>
+    <line x1="392" y1="300" x2="332" y2="312"/>
+    <line x1="390" y1="326" x2="332" y2="322"/>
+  </g>
+  <!-- 项圈 绿色 -->
+  <path d="M162 356 Q256 404 350 356 L342 380 Q256 424 170 380 Z" fill="#3FA46A"/>
+  <circle cx="256" cy="404" r="14" fill="#FFD66B" stroke="#D9A83C" stroke-width="3"/>
 </svg>

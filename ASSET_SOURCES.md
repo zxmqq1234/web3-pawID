@@ -14,8 +14,8 @@
 | 文件路径 | 类型 | 形象说明 | 来源/归属 | 许可证/可分发状态 | 用途 |
 |---|---|---|---|---|---|
 | `public/assets/pets/mochi-photo.svg` | 原创 SVG 肖像 | Mochi：橘白相间猫，绿色眼睛，紫色项圈配金牌 | 本次项目原创 | 可随源代码分发 | 主宠默认头像/详情页 |
-| `public/assets/pets/leo-photo.svg` | 原创 SVG 肖像 | Leo：金毛寻回犬，垂耳，吐舌，紫色项圈 | 本次项目原创 | 可随源代码分发 | 主宠头像/领养页 |
-| `public/assets/pets/coco-photo.svg` | 原创 SVG 肖像 | Coco：可可色卷毛贵宾，深色眼睛，腮红 | 本次项目原创 | 可随源代码分发 | 主宠头像/领养页 |
+| `public/assets/pets/leo-photo.svg` | 原创 SVG 肖像 | Leo：橘白短毛猫（公），额头虎斑纹，琥珀色竖瞳，白色火焰纹，绿色项圈 | 本次项目原创 | 可随源代码分发 | 主宠头像/领养页 |
+| `public/assets/pets/coco-photo.svg` | 原创 SVG 肖像 | Coco：海豹双色布偶猫（母），深棕重点色面具，白色火焰纹，蓝色眼睛，粉色项圈，耳边小花 | 本次项目原创 | 可随源代码分发 | 主宠头像/领养页 |
 | `public/assets/pets/luna-photo.svg` | 原创 SVG 肖像 | Luna：月光灰猫，额头月牙纹，蓝色眼睛，星形吊坠 | 本次项目原创 | 可随源代码分发 | 主宠头像/领养页 |
 
 ## 二、祖辈肖像（4 位，可区分）
