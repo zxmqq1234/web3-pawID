@@ -3,7 +3,7 @@ import { cloneSeedState } from '../src/domain/seed';
 import type { LifeEventInput } from '../src/domain/types';
 import { applyOperation, getDerivedBalance } from '../src/store/actions';
 import type { OperationAction } from '../src/store/actions';
-import { getPetBadges, getSiblings } from '../src/store/selectors';
+import { getPetBadges, getPointsCirculation, getSiblings } from '../src/store/selectors';
 
 /** 用固定输入构造操作，测试 reducer 的原子业务结果。 */
 function operation<T extends OperationAction>(value: T): T {
@@ -65,7 +65,7 @@ describe('PawID DemoStore 奖励与去重规则', () => {
 
   it('重复兑换不扣分', () => {
     const state = cloneSeedState();
-    const redeem = operation<OperationAction>({ type: 'REDEEM_ITEM', petId: 'mochi', code: 'bow', itemId: 'item-bow', createdAt: now, pointEntryId: 'points-bow' });
+    const redeem = operation<OperationAction>({ type: 'REDEEM_ITEM', petId: 'mochi', code: 'bow', itemId: 'item-bow', createdAt: now, pointEntryId: 'points-bow', transactionId: 'ptx-test-bow' });
     const once = applyOperation(state, redeem);
     const twice = applyOperation(once, redeem);
     expect(once.inventoryItems.filter((item) => item.petId === 'mochi')).toHaveLength(1);
@@ -88,5 +88,46 @@ describe('PawID DemoStore 奖励与去重规则', () => {
   it('Luna 从共同确认父母关系派生为 Mochi 的姐妹', () => {
     const state = cloneSeedState();
     expect(getSiblings(state, 'mochi').map((pet) => pet.id)).toContain('luna');
+  });
+});
+
+describe('PawID DemoStore 积分流通规则', () => {
+  it('领取积分包增加余额并写入带交易编号的流水', () => {
+    const state = cloneSeedState();
+    const after = applyOperation(state, operation<OperationAction>({
+      type: 'PURCHASE_POINTS', petId: 'mochi', packCode: 'pack_300', entryId: 'points-pack-1', createdAt: now, operationKey: 'purchase-test-1', transactionId: 'ptx-pack-1',
+    }));
+    expect(getDerivedBalance(after, 'mochi')).toBe(getDerivedBalance(state, 'mochi') + 300);
+    const entries = after.pointEntries.filter((entry) => entry.petId === 'mochi' && entry.kind === 'purchase');
+    expect(entries).toHaveLength(1);
+    expect(entries[0].amount).toBe(300);
+    expect(entries[0].transactionId).toBe('ptx-pack-1');
+    expect(entries[0].balanceAfter).toBe(getDerivedBalance(after, 'mochi'));
+  });
+
+  it('相同 requestId 的重复领取只入账一次', () => {
+    const state = cloneSeedState();
+    const purchase = operation<OperationAction>({
+      type: 'PURCHASE_POINTS', petId: 'mochi', packCode: 'pack_100', entryId: 'points-pack-2', createdAt: now, operationKey: 'purchase:mochi:pack_100:req-1', transactionId: 'ptx-pack-2',
+    });
+    const once = applyOperation(state, purchase);
+    const twice = applyOperation(once, purchase);
+    expect(getDerivedBalance(twice, 'mochi')).toBe(getDerivedBalance(state, 'mochi') + 100);
+    expect(twice.pointEntries.filter((entry) => entry.kind === 'purchase')).toHaveLength(1);
+  });
+
+  it('积分流通统计由流水准确派生', () => {
+    const state = cloneSeedState();
+    const purchased = applyOperation(state, operation<OperationAction>({
+      type: 'PURCHASE_POINTS', petId: 'mochi', packCode: 'pack_600', entryId: 'points-pack-3', createdAt: now, operationKey: 'purchase-test-3', transactionId: 'ptx-pack-3',
+    }));
+    const redeemed = applyOperation(purchased, operation<OperationAction>({ type: 'REDEEM_ITEM', petId: 'mochi', code: 'bow', itemId: 'item-bow', createdAt: now, pointEntryId: 'points-bow-3', transactionId: 'ptx-bow-3' }));
+    const before = getPointsCirculation(state, 'mochi');
+    const after = getPointsCirculation(redeemed, 'mochi');
+    expect(after.balance).toBe(getDerivedBalance(redeemed, 'mochi'));
+    expect(after.totalEarned).toBe(before.totalEarned + 600);
+    expect(after.totalSpent).toBe(before.totalSpent + 60);
+    expect(after.transactionCount).toBe(before.transactionCount + 2);
+    expect(after.balance).toBe(after.totalEarned - after.totalSpent);
   });
 });

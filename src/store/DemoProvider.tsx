@@ -13,6 +13,7 @@ import type {
   LifeRecordAnchor,
   LostCaseInput,
   PetChainIdentity,
+  PointPackCode,
   UpdatePetInput,
 } from '../domain/types';
 import { cloneSeedState } from '../domain/seed';
@@ -21,6 +22,7 @@ import {
   createEntityId,
   demoReducer,
   getDerivedBalance,
+  operationKey,
   type OperationAction,
   simulateOperation,
 } from './actions';
@@ -56,6 +58,8 @@ export interface DemoActions {
   updateLifeEvent(eventId: string, input: LifeEventInput): Promise<void>;
   deleteLifeEvent(eventId: string): Promise<void>;
   redeemItem(petId: string, code: InventoryItemCode): Promise<void>;
+  /** 领取固定积分包：不接入支付；传入相同 requestId 的重复请求只入账一次。 */
+  purchasePoints(petId: string, packCode: PointPackCode, requestId?: string): Promise<void>;
   equipItem(petId: string, itemId: string, equipped?: boolean): Promise<void>;
   openLostCase(input: LostCaseInput): Promise<void>;
   addFoundReport(input: FoundReportInput): Promise<void>;
@@ -132,6 +136,14 @@ export function DemoProvider({ children }: PropsWithChildren): JSX.Element {
     deleteLifeEvent: (eventId) => run('删除生命记录', () => ({ type: 'DELETE_LIFE_EVENT', eventId })),
     redeemItem: (petId, code) => run('兑换装扮', () => ({
       type: 'REDEEM_ITEM', petId, code, itemId: createEntityId('item'), createdAt: new Date().toISOString(), pointEntryId: createEntityId('points'),
+      // 平台交易编号用 ptx 前缀，绝不生成 0x 开头或冒充链上哈希的字符串。
+      transactionId: createEntityId('ptx'),
+    })),
+    purchasePoints: (petId, packCode, requestId) => run('领取积分包', () => ({
+      type: 'PURCHASE_POINTS', petId, packCode, entryId: createEntityId('points'), createdAt: new Date().toISOString(),
+      // 相同 requestId 确定性派生同一操作键，网络重试天然幂等；未提供时使用随机键。
+      operationKey: operationKey('purchase', `${petId}:${packCode}:${requestId ?? createEntityId('request')}`),
+      transactionId: createEntityId('ptx'),
     })),
     equipItem: (petId, itemId, equipped = true) => run('更新穿戴', () => ({ type: 'EQUIP_ITEM', petId, itemId, equipped })),
     openLostCase: (input) => run('标记走失', () => ({ type: 'OPEN_LOST_CASE', input, caseId: createEntityId('lost'), createdAt: new Date().toISOString() })),

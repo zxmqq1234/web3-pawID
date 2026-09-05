@@ -1,4 +1,4 @@
-/** 演示中可切换的访问角色。 */
+/** 应用中可切换的访问角色。 */
 export type DemoRole = 'owner' | 'invitee' | 'visitor';
 
 /** 宠物物种，亲缘关系只允许同物种建立。 */
@@ -14,10 +14,10 @@ export type AvatarStyle = '3d' | 'pixel' | 'illustration';
 export type GuardianRole = 'owner' | 'co_guardian';
 export type GuardianStatus = 'accepted' | 'pending' | 'rejected';
 
-/** 用户是预置演示用户还是后续业务创建的用户。 */
+/** 用户来自初始数据还是后续业务创建。 */
 export type UserKind = 'seed' | 'demo';
 
-/** 预置或演示用户。 */
+/** 初始数据或后续创建的用户。 */
 export interface User {
   id: string;
   nickname: string;
@@ -43,7 +43,7 @@ export interface Pet {
     appearance: string;
     isLostVisible: boolean;
   };
-  /** 演示环境的身份占位数据；不构成真实链上所有权，真实所有权以 DemoState.onChainIdentities 为准。 */
+  /** 本机记录的账户占位数据；不构成真实链上所有权，真实所有权以 DemoState.onChainIdentities 为准。 */
   identityAccount: {
     network: string;
     address: string;
@@ -116,7 +116,7 @@ export interface LifeEvent {
 export type CredentialSource = 'user_filled' | 'mutual_confirmed' | 'institution_demo';
 export type CredentialStatus = 'valid' | 'expired' | 'pending';
 
-/** 仅用于前端演示的身份、健康或血统凭证。 */
+/** 仅保存在本机的身份、健康或血统凭证。 */
 export interface Credential {
   id: string;
   petId: string;
@@ -129,8 +129,12 @@ export interface Credential {
   summary: string;
 }
 
-/** 积分变化明细，正数为收入，负数为支出。 */
-export type PointEntryKind = 'seed' | 'reward' | 'redeem';
+/** 积分变化明细，正数为收入，负数为支出；purchase 表示本机积分包领取记录。 */
+export type PointEntryKind = 'seed' | 'reward' | 'purchase' | 'redeem';
+
+/** 固定积分包编码，目录由 Store 层维护，页面不允许自定义金额。 */
+export type PointPackCode = 'pack_100' | 'pack_300' | 'pack_600';
+
 export interface PointEntry {
   id: string;
   petId: string;
@@ -140,6 +144,8 @@ export interface PointEntry {
   taskKey: string | null;
   title: string;
   createdAt: string;
+  /** 可读交易编号，仅用于本机流水追溯；旧数据没有该字段，展示时回退到类型名称。 */
+  transactionId?: string;
 }
 
 /** 固定装扮商品及其持有、穿戴状态。 */
@@ -262,7 +268,7 @@ export interface LifeRecordAnchor {
   anchoredAt: string;
 }
 
-/** localStorage 中的完整、可序列化演示状态。 */
+/** localStorage 中的完整、可序列化应用状态。 */
 export interface DemoState {
   users: User[];
   pets: Pet[];
