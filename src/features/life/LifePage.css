@@ -1,0 +1,828 @@
+.life-page {
+  --life-ink: #252238;
+  --life-muted: #726e80;
+  --life-line: #e6e1ef;
+  --life-soft: #f5f1ff;
+  --life-lilac: #8b75f5;
+  --life-plum: #614bc9;
+  --life-warm: #fff8ec;
+  max-width: 1180px;
+  margin: 0 auto;
+  color: var(--life-ink);
+}
+
+.life-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 22px;
+}
+
+.life-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--life-lilac);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.life-page-header h1 {
+  margin: 8px 0 3px;
+  color: var(--life-ink);
+  font-size: clamp(26px, 4vw, 36px);
+  letter-spacing: -.045em;
+}
+
+.life-page-header p {
+  margin: 0;
+  color: var(--life-muted);
+  font-size: 15px;
+}
+
+.life-header-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.life-privacy-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  margin-bottom: 25px;
+  padding: 9px 13px;
+  color: #665d75;
+  border: 1px solid #e5ddff;
+  border-radius: 11px;
+  background: linear-gradient(90deg, #faf8ff, #fffdf9);
+  font-size: 12px;
+}
+
+.life-privacy-note svg {
+  flex: 0 0 auto;
+  color: var(--life-lilac);
+}
+
+.life-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.life-filter-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--life-ink);
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.life-filter-heading svg {
+  color: var(--life-lilac);
+}
+
+.life-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.life-filter {
+  min-height: 36px;
+  padding: 0 14px;
+  color: var(--life-muted);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.life-filter:hover {
+  color: var(--life-plum);
+  background: var(--life-soft);
+  transform: translateY(-1px);
+}
+
+.life-filter.is-active {
+  color: #fff;
+  background: var(--life-plum);
+  box-shadow: 0 6px 14px rgba(97, 75, 201, .18);
+}
+
+.life-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.86fr) minmax(270px, 1fr);
+  align-items: start;
+  gap: 22px;
+}
+
+.life-panel {
+  border: 1px solid var(--life-line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 14px 32px rgba(62, 45, 104, .07);
+}
+
+.life-timeline-panel {
+  min-width: 0;
+  padding: 22px 24px 24px;
+  background: linear-gradient(180deg, #fff 0%, #fdfcff 100%);
+}
+
+.life-credential-panel {
+  position: sticky;
+  top: 88px;
+  padding: 22px 18px 18px;
+}
+
+.life-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.life-panel-heading h2 {
+  margin: 3px 0 0;
+  color: var(--life-ink);
+  font-size: 20px;
+  letter-spacing: -.03em;
+}
+
+.life-panel-heading > svg {
+  margin-top: 3px;
+  color: var(--life-lilac);
+}
+
+.life-section-kicker {
+  color: #a89bbd;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.life-count {
+  padding-top: 16px;
+  color: var(--life-muted);
+  font-size: 12px;
+}
+
+.life-event-list {
+  position: relative;
+  margin-top: 21px;
+}
+
+.life-event-list::before {
+  position: absolute;
+  top: 14px;
+  bottom: 28px;
+  left: 6px;
+  width: 1px;
+  background: linear-gradient(180deg, #d8cef8 0%, #ece8f4 86%, transparent);
+  content: '';
+}
+
+.life-event-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 15px;
+  padding: 0 0 22px;
+}
+
+.life-event-card:last-child {
+  padding-bottom: 0;
+}
+
+.life-event-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: start center;
+  padding-top: 10px;
+}
+
+.life-event-marker span {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--life-lilac);
+  box-shadow: 0 0 0 3px #ddd4fa;
+}
+
+.life-event-card.is-system .life-event-marker span {
+  background: #b5aabe;
+  box-shadow: 0 0 0 3px #eeeaf1;
+}
+
+.life-event-content {
+  min-width: 0;
+  padding: 15px 17px 14px;
+  border: 1px solid #ebe7f0;
+  border-radius: 14px;
+  background: #fff;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.life-event-content:hover {
+  border-color: #d7ccfb;
+  box-shadow: 0 9px 20px rgba(76, 53, 137, .08);
+  transform: translateY(-2px);
+}
+
+.life-event-card.is-system .life-event-content {
+  background: #fcfbfd;
+}
+
+.life-event-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--life-muted);
+  font-size: 12px;
+}
+
+.life-event-type {
+  color: var(--life-plum);
+  font-weight: 800;
+}
+
+.life-event-content h3 {
+  margin: 6px 0 4px;
+  color: var(--life-ink);
+  font-size: 17px;
+  letter-spacing: -.025em;
+}
+
+.life-event-content > p {
+  margin: 0;
+  color: var(--life-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.life-event-meta,
+.life-detail-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--life-muted);
+  font-size: 11px;
+}
+
+.life-photo-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.life-event-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 7px -8px -5px;
+}
+
+.life-event-actions .button {
+  min-height: 34px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.life-delete-button {
+  color: var(--danger) !important;
+}
+
+.life-credential-panel .life-panel-intro {
+  margin: 13px 0 16px;
+  color: var(--life-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.life-credential-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.life-credential-card {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 10px;
+  color: var(--life-ink);
+  border: 1px solid #ece8f2;
+  border-radius: 13px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.life-credential-card:hover {
+  border-color: #d7ccfb;
+  box-shadow: 0 8px 18px rgba(76, 53, 137, .08);
+  transform: translateY(-2px);
+}
+
+.life-credential-card-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--life-plum);
+  border-radius: 10px;
+  background: var(--life-soft);
+}
+
+.life-credential-card-main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.life-credential-card-main strong {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.life-credential-card-main span {
+  color: var(--life-muted);
+  font-size: 11px;
+}
+
+.life-credential-card-side {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #aaa0b7;
+}
+
+.life-credential-card-side .status-tag {
+  display: none;
+}
+
+.life-credential-footnote {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: 18px;
+  padding-top: 14px;
+  color: #8b8195;
+  border-top: 1px solid #eeeaf2;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.life-credential-footnote svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #a292c6;
+}
+
+.life-form-intro {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 19px;
+  color: var(--life-muted);
+  font-size: 12px;
+}
+
+.life-form-intro p {
+  margin: 0;
+}
+
+.life-form-step {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  padding: 0 7px;
+  color: var(--life-plum);
+  border-radius: 6px;
+  background: var(--life-soft);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.life-character-count {
+  margin: -11px 0 13px;
+  color: #9c94a6;
+  font-size: 11px;
+  text-align: right;
+}
+
+.life-textarea-field textarea {
+  width: 100%;
+  min-height: 105px;
+  padding: 10px 12px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  resize: vertical;
+}
+
+.life-textarea-field textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.life-description-footer {
+  margin-top: -4px;
+  color: #9c94a6;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.life-photo-field {
+  gap: 8px;
+}
+
+.life-upload-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 13px;
+  overflow: hidden;
+  color: var(--life-plum);
+  border: 1px dashed #cfc3f7;
+  border-radius: 10px;
+  background: #fbfaff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.life-upload-control:hover {
+  border-color: var(--life-lilac);
+  background: var(--life-soft);
+}
+
+.life-upload-control input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.life-field-hint {
+  color: var(--life-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.life-photo-preview-box,
+.life-existing-photo,
+.life-remove-photo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  color: var(--life-muted);
+  border: 1px solid #ece8f2;
+  border-radius: 10px;
+  background: #fcfbff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.life-photo-preview-box .button,
+.life-existing-photo .button,
+.life-remove-photo .button {
+  min-height: 30px;
+  margin-left: auto;
+  padding: 0 7px;
+  font-size: 11px;
+}
+
+.life-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.life-photo-preview-box .life-photo,
+.life-existing-photo .life-photo {
+  width: 48px;
+  height: 48px;
+}
+
+.life-photo-preview-box > span:not(.button),
+.life-existing-photo > span {
+  min-width: 0;
+}
+
+.life-remove-photo {
+  color: #84664e;
+  border-color: #f2dfc2;
+  background: #fffaf1;
+}
+
+.life-visibility-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: -2px 0 0;
+  color: var(--life-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.life-visibility-hint svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: var(--life-lilac);
+}
+
+.life-form-actions {
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.life-detail-content {
+  color: var(--life-muted);
+}
+
+.life-detail-badges {
+  margin-top: 0;
+}
+
+.life-detail-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: var(--life-plum);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.life-detail-description {
+  margin: 15px 0 0;
+  color: var(--life-ink);
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.life-detail-photos {
+  width: min(100%, 320px);
+  aspect-ratio: 4 / 3;
+  margin-top: 18px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: #f3effb;
+}
+
+.life-detail-source {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 20px;
+  padding: 14px;
+  border: 1px solid #e7defd;
+  border-radius: 12px;
+  background: #fbf9ff;
+  font-size: 12px;
+}
+
+.life-detail-source span,
+.life-detail-source small {
+  color: var(--life-muted);
+}
+
+.life-detail-source strong {
+  color: var(--life-ink);
+  font-size: 13px;
+}
+
+.life-detail-actions {
+  justify-content: flex-end;
+}
+
+.life-credential-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.life-credential-detail-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 3px;
+}
+
+.life-credential-detail-hero .life-credential-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+
+.life-credential-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid #eeeaf2;
+}
+
+.life-credential-fields > div {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid #eeeaf2;
+  font-size: 13px;
+}
+
+.life-credential-fields dt {
+  color: var(--life-muted);
+}
+
+.life-credential-fields dd {
+  margin: 0;
+  color: var(--life-ink);
+  line-height: 1.65;
+}
+
+.life-demo-boundary {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  color: #765f48;
+  border: 1px solid #f0ddbd;
+  border-radius: 12px;
+  background: var(--life-warm);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.life-demo-boundary svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #bb8958;
+}
+
+.life-info-drawer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--life-muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.life-info-drawer p {
+  margin: 0;
+}
+
+.life-info-drawer h3 {
+  margin: 0;
+  color: var(--life-ink);
+  font-size: 18px;
+}
+
+.life-info-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--life-plum);
+  border-radius: 14px;
+  background: var(--life-soft);
+}
+
+@media (max-width: 900px) {
+  .life-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(230px, .75fr);
+  }
+
+  .life-credential-card {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .life-credential-card-side {
+    grid-column: 2;
+    justify-content: flex-start;
+  }
+
+  .life-credential-card-side .status-tag {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .life-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .life-header-actions {
+    justify-content: flex-start;
+  }
+
+  .life-filter-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .life-filters {
+    justify-content: flex-start;
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 3px;
+  }
+
+  .life-filter {
+    flex: 0 0 auto;
+  }
+
+  .life-workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .life-timeline-panel,
+  .life-credential-panel {
+    width: 100%;
+    padding: 18px 15px;
+  }
+
+  .life-credential-panel {
+    position: static;
+  }
+
+  .life-event-content {
+    padding: 13px 13px 12px;
+  }
+
+  .life-event-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .life-event-actions {
+    margin-top: 8px;
+  }
+
+  .life-event-actions .button {
+    padding: 0 7px;
+  }
+
+  .life-credential-card {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+  }
+
+  .life-credential-card-side {
+    grid-column: auto;
+    justify-content: initial;
+  }
+
+  .life-credential-card-side .status-tag {
+    display: none;
+  }
+}
